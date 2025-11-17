@@ -1,0 +1,240 @@
+{
+  "city": {
+    "name": "NeoGrid City",
+    "districtName": "Peninsula District",
+    "mode": "auto-heal",
+    "health": 92,
+    "resolvedToday": 38,
+    "activeIncidents": 2,
+    "uptime": 99.982
+  },
+  "sensors": [
+    {
+      "id": "W-204",
+      "name": "Water Pressure Line",
+      "category": "water",
+      "location": "Sector 12 Main",
+      "reading": "Pressure delta 14%",
+      "health": 88,
+      "status": "alert",
+      "lastUpdatedAt": "2026-03-15T00:00:00.000Z",
+      "position": [77.59384, 12.97086],
+      "targetType": "pipe",
+      "targetId": "pipe-sector-12"
+    },
+    {
+      "id": "R-118",
+      "name": "Road Vision Unit",
+      "category": "roads",
+      "location": "Transit Corridor",
+      "reading": "No fracture detected",
+      "health": 95,
+      "status": "nominal",
+      "lastUpdatedAt": "2026-03-15T00:00:00.000Z",
+      "position": [77.59518, 12.97064],
+      "targetType": "road",
+      "targetId": "road-transit-corridor"
+    },
+    {
+      "id": "A-076",
+      "name": "Air Quality Tower",
+      "category": "air",
+      "location": "Industrial Belt",
+      "reading": "AQI 133",
+      "health": 89,
+      "status": "alert",
+      "lastUpdatedAt": "2026-03-15T00:00:00.000Z",
+      "position": [77.59578, 12.97268],
+      "targetType": "zone",
+      "targetId": "zone-east"
+    },
+    {
+      "id": "P-330",
+      "name": "Storm Drain Sonar",
+      "category": "flood",
+      "location": "River Edge",
+      "reading": "Flow normal",
+      "health": 93,
+      "status": "nominal",
+      "lastUpdatedAt": "2026-03-15T00:00:00.000Z",
+      "position": [77.59352, 12.97278],
+      "targetType": "pipe",
+      "targetId": "pipe-river-drain"
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset-drone-03",
+      "name": "Aerial Drone 03",
+      "shortLabel": "DRN-03",
+      "type": "drone",
+      "capabilities": ["inspection", "mapping", "patch delivery"],
+      "status": "busy",
+      "battery": 84,
+      "location": "Central Hangar",
+      "homePosition": [77.59546, 12.97218],
+      "position": [77.59546, 12.97218],
+      "currentMission": "INC-3999"
+    },
+    {
+      "id": "asset-pipebot-11",
+      "name": "PipeBot 11",
+      "shortLabel": "PBT-11",
+      "type": "robot",
+      "capabilities": ["sealant clamp", "internal crawl", "pressure validation"],
+      "status": "busy",
+      "battery": 79,
+      "location": "Utility Depot",
+      "homePosition": [77.59366, 12.97068],
+      "position": [77.59366, 12.97068],
+      "currentMission": "INC-4000"
+    },
+    {
+      "id": "asset-rover-07",
+      "name": "Road Rover 07",
+      "shortLabel": "RVR-07",
+      "type": "robot",
+      "capabilities": ["surface scan", "asphalt print repair", "traffic cone deployment"],
+      "status": "ready",
+      "battery": 74,
+      "location": "Mobility Bay",
+      "homePosition": [77.59468, 12.97052],
+      "position": [77.59468, 12.97052],
+      "currentMission": null
+    },
+    {
+      "id": "asset-airsweep-02",
+      "name": "AirSweep Unit 02",
+      "shortLabel": "AIR-02",
+      "type": "robot",
+      "capabilities": ["air sampling", "neutralization", "containment", "pressure diversion"],
+      "status": "charging",
+      "battery": 44,
+      "location": "Industrial Hub",
+      "homePosition": [77.59594, 12.97262],
+      "position": [77.59594, 12.97262],
+      "currentMission": null
+    }
+  ],
+  "incidents": [
+    {
+      "id": "INC-4000",
+      "title": "Micro leak near Sector 12 main",
+      "category": "water",
+      "severity": "high",
+      "status": "in_progress",
+      "detectedAt": "2026-03-15T00:00:00.000Z",
+      "location": "Sector 12 Main",
+      "coordinate": [77.59384, 12.97086],
+      "sensorId": "W-204",
+      "targetType": "pipe",
+      "targetId": "pipe-sector-12",
+      "summary": "Pressure differential indicates underground crack propagation below the civic utility branch.",
+      "aiAssessment": {
+        "confidence": 0.87,
+        "predictedImpact": "Water loss of 1400L in 20 minutes if untreated.",
+        "recommendation": "Dispatch PipeBot with emergency clamp route and isolate branch valve."
+      },
+      "assignedAssetId": "asset-pipebot-11",
+      "worklog": [
+        "PipeBot 11 is sealing the pressure breach.",
+        "AI classified event as a high priority pipe failure.",
+        "Pressure anomaly crossed the leak threshold."
+      ]
+    },
+    {
+      "id": "INC-3999",
+      "title": "Localized emissions plume above industrial belt",
+      "category": "air",
+      "severity": "high",
+      "status": "in_progress",
+      "detectedAt": "2026-03-15T00:00:00.000Z",
+      "location": "Industrial Belt",
+      "coordinate": [77.59578, 12.97268],
+      "sensorId": "A-076",
+      "targetType": "zone",
+      "targetId": "zone-east",
+      "summary": "A short-lived pollutant plume was detected near the east industrial stack with rising particulate density.",
+      "aiAssessment": {
+        "confidence": 0.83,
+        "predictedImpact": "AQI likely to exceed 140 for nearby blocks within 12 minutes.",
+        "recommendation": "Launch aerial drone for plume mapping and prepare AirSweep for neutralization."
+      },
+      "assignedAssetId": "asset-drone-03",
+      "worklog": [
+        "Aerial Drone 03 is mapping the emissions source.",
+        "Source triangulation narrowed the plume to the industrial belt.",
+        "Air quality tower flagged a hazardous rise."
+      ]
+    }
+  ],
+  "missions": [
+    {
+      "id": "MIS-9100",
+      "incidentId": "INC-4000",
+      "assetId": "asset-pipebot-11",
+      "assetType": "robot",
+      "objective": "Seal leak and restore pressure baseline.",
+      "etaMinutes": 4,
+      "progress": 62,
+      "status": "active",
+      "route": [
+        [77.59366, 12.97068],
+        [77.59384, 12.97068],
+        [77.59384, 12.97086]
+      ]
+    },
+    {
+      "id": "MIS-9099",
+      "incidentId": "INC-3999",
+      "assetId": "asset-drone-03",
+      "assetType": "drone",
+      "objective": "Map pollutant spread and verify source for containment.",
+      "etaMinutes": 5,
+      "progress": 46,
+      "status": "active",
+      "route": [
+        [77.59546, 12.97218],
+        [77.59580, 12.97255],
+        [77.59578, 12.97268]
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "id": "EVT-1",
+      "time": "2026-03-15T00:00:00.000Z",
+      "kind": "system",
+      "message": "Digital twin synchronized with 248 simulated edge devices.",
+      "incidentId": null
+    },
+    {
+      "id": "EVT-2",
+      "time": "2026-03-15T00:00:00.000Z",
+      "kind": "incident",
+      "message": "INC-4000 detected near Sector 12 Main.",
+      "incidentId": "INC-4000"
+    },
+    {
+      "id": "EVT-3",
+      "time": "2026-03-15T00:00:00.000Z",
+      "kind": "dispatch",
+      "message": "PipeBot 11 launched toward INC-4000.",
+      "incidentId": "INC-4000"
+    },
+    {
+      "id": "EVT-4",
+      "time": "2026-03-15T00:00:00.000Z",
+      "kind": "incident",
+      "message": "INC-3999 detected near Industrial Belt.",
+      "incidentId": "INC-3999"
+    },
+    {
+      "id": "EVT-5",
+      "time": "2026-03-15T00:00:00.000Z",
+      "kind": "dispatch",
+      "message": "Aerial Drone 03 launched toward INC-3999.",
+      "incidentId": "INC-3999"
+    }
+  ]
+}
