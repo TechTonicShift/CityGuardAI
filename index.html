@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeoGrid City OS</title>
+  <link rel="stylesheet" href="./vendor/maplibre-gl.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-view-mode="executive">
+  <main class="page-shell">
+    <section class="hero-shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Self-Healing Infrastructure</p>
+        <h1>See a city detect, explain, and fix problems in plain sight.</h1>
+        <p class="hero-lede">
+          NeoGrid City OS turns autonomous infrastructure repair into something a mayor,
+          operator, investor, or citizen can understand in seconds.
+        </p>
+
+        <div class="mode-switch" aria-label="View mode">
+          <button class="mode-tab is-active" data-view-mode="executive">Executive View</button>
+          <button class="mode-tab" data-view-mode="operations">Operations View</button>
+          <button class="mode-tab" data-view-mode="citizen">Citizen View</button>
+        </div>
+
+        <div class="trust-strip">
+          <span class="trust-pill">
+            Human override available
+            <button
+              class="hint-trigger"
+              type="button"
+              data-hint-title="Human Override"
+              data-hint-text="Operators can pause autonomous actions and intervene manually at any point."
+              aria-label="Explain human override"
+            >?</button>
+          </span>
+          <span class="trust-pill">
+            AI explains every action
+            <button
+              class="hint-trigger"
+              type="button"
+              data-hint-title="Explainability"
+              data-hint-text="The AI copilot summarizes why the system prioritized a problem and why it chose a response."
+              aria-label="Explain AI explainability"
+            >?</button>
+          </span>
+          <span class="trust-pill">
+            Live digital twin
+            <button
+              class="hint-trigger"
+              type="button"
+              data-hint-title="Digital Twin"
+              data-hint-text="A live model of the district that mirrors sensors, incidents, assets, and repair progress."
+              aria-label="Explain digital twin"
+            >?</button>
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <article class="story-card">
+          <p class="section-kicker">What Is Happening Now</p>
+          <strong id="heroStoryTitle">Waiting for live city state...</strong>
+          <p id="heroStoryText">The platform will summarize the most important action in plain language here.</p>
+        </article>
+
+        <div class="metric-strip">
+          <div class="metric-card">
+            <span>
+              City Health
+              <button
+                class="hint-trigger"
+                type="button"
+                data-hint-title="City Health"
+                data-hint-text="A composite score based on infrastructure stability, unresolved incidents, and asset readiness."
+                aria-label="Explain city health"
+              >?</button>
+            </span>
+            <strong id="cityHealth">--</strong>
+          </div>
+          <div class="metric-card">
+            <span>
+              Problems Open
+              <button
+                class="hint-trigger"
+                type="button"
+                data-hint-title="Problems Open"
+                data-hint-text="The number of infrastructure issues that are still being investigated or repaired."
+                aria-label="Explain problems open"
+              >?</button>
+            </span>
+            <strong id="openIncidents">--</strong>
+          </div>
+          <div class="metric-card">
+            <span>
+              Problems Fixed Today
+              <button
+                class="hint-trigger"
+                type="button"
+                data-hint-title="Problems Fixed Today"
+                data-hint-text="How many incidents were verified as repaired during the current demo day."
+                aria-label="Explain problems fixed today"
+              >?</button>
+            </span>
+            <strong id="resolvedToday">--</strong>
+          </div>
+          <div class="metric-card">
+            <span>
+              Automatic Response
+              <button
+                class="hint-trigger"
+                type="button"
+                data-hint-title="Automatic Response"
+                data-hint-text="When active, the city automatically sends the best available asset once a problem crosses the response threshold."
+                aria-label="Explain automatic response"
+              >?</button>
+            </span>
+            <strong id="cityMode">--</strong>
+          </div>
+          <div class="metric-card">
+            <span>
+              AI Coverage
+              <button
+                class="hint-trigger"
+                type="button"
+                data-hint-title="AI Coverage"
+                data-hint-text="The portion of current city operations that can be analyzed or narrated by the AI copilot."
+                aria-label="Explain AI coverage"
+              >?</button>
+            </span>
+            <strong id="automationRate">--</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="map-shell">
+      <article class="map-panel">
+        <div class="map-panel__head">
+          <div>
+            <p class="section-kicker">Executive Map</p>
+            <h2>Peninsula District Live Twin</h2>
+            <p class="panel-copy">One map. One active story. One visible chain from detection to verified repair.</p>
+          </div>
+          <div class="control-row">
+            <button id="simulateBtn" class="primary-btn">Run Demo Scenario</button>
+            <button id="modeBtn" class="secondary-btn">Automatic Response</button>
+            <button id="resetBtn" class="ghost-btn">Reset Scenario</button>
+            <button id="recenterBtn" class="ghost-btn">Recenter Map</button>
+            <button id="refreshBtn" class="ghost-btn">Refresh</button>
+          </div>
+        </div>
+
+        <div class="map-frame">
+          <div id="mapCanvas" class="map-canvas"></div>
+
+          <div class="map-overlay status-overlay">
+            <span class="overlay-label">Live Incident Story</span>
+            <strong id="mapStatusTitle">Starting digital twin...</strong>
+            <p id="mapStatusText">Waiting for the first state sync.</p>
+          </div>
+
+          <div class="map-overlay legend-overlay">
+            <strong>What you are seeing</strong>
+            <div class="legend-list">
+              <span><i class="dot alert"></i> Active problem</span>
+              <span><i class="dot route"></i> Repair route</span>
+              <span><i class="dot asset"></i> Robot or drone</span>
+              <span><i class="dot pipe"></i> Utility network</span>
+            </div>
+          </div>
+
+          <div class="map-overlay sync-overlay">
+            <span id="lastSync">Waiting for sync...</span>
+          </div>
+        </div>
+
+        <div id="overviewStats" class="proof-grid"></div>
+      </article>
+
+      <aside class="context-rail">
+        <section class="context-card">
+          <div class="card-head">
+            <div>
+              <p class="section-kicker">Decision Context</p>
+              <h2>Selected Incident</h2>
+            </div>
+          </div>
+          <div id="detailCard" class="card-body"></div>
+        </section>
+
+        <section class="context-card">
+          <div class="card-head">
+            <div>
+              <p class="section-kicker">City Copilot</p>
+              <h2>AI Explanation Layer</h2>
+            </div>
+          </div>
+          <div id="aiCard" class="card-body"></div>
+          <div class="action-row">
+            <button id="aiIncidentBtn" class="action-btn">Explain Selected Incident</button>
+            <button id="aiCityBtn" class="action-btn">Generate City Brief</button>
+          </div>
+        </section>
+
+        <section class="context-card citizen-card">
+          <div class="card-head">
+            <div>
+              <p class="section-kicker">Citizen Notice</p>
+              <h2>Public-Facing Summary</h2>
+            </div>
+          </div>
+          <div id="citizenBrief" class="card-body"></div>
+        </section>
+      </aside>
+    </section>
+
+    <section class="detail-shell">
+      <section class="surface-panel" data-view-panel="executive">
+        <div class="card-head">
+          <div>
+            <p class="section-kicker">Proof</p>
+            <h2>Action / Reaction Feed</h2>
+          </div>
+        </div>
+        <div id="timelineList" class="timeline-list"></div>
+      </section>
+
+      <section class="surface-panel" data-view-panel="operations">
+        <div class="card-head">
+          <div>
+            <p class="section-kicker">Operations</p>
+            <h2>Response Queue</h2>
+          </div>
+        </div>
+        <div id="incidentList" class="queue-grid"></div>
+      </section>
+
+      <section class="surface-panel" data-view-panel="operations">
+        <div class="card-head">
+          <div>
+            <p class="section-kicker">Operations</p>
+            <h2>Autonomous Jobs</h2>
+          </div>
+        </div>
+        <div id="missionList" class="stack-list"></div>
+      </section>
+
+      <section class="surface-panel" data-view-panel="operations">
+        <div class="card-head">
+          <div>
+            <p class="section-kicker">Operations</p>
+            <h2>Fleet Status</h2>
+          </div>
+        </div>
+        <div id="assetList" class="asset-grid"></div>
+      </section>
+
+      <section class="surface-panel scenario-panel" data-view-panel="operations">
+        <div class="card-head">
+          <div>
+            <p class="section-kicker">Demo Lab</p>
+            <h2>Scenario Builder</h2>
+          </div>
+        </div>
+        <form id="incidentForm" class="incident-form">
+          <label>
+            Scenario title
+            <input name="title" type="text" placeholder="Example: Burst pipe near civic loop" required>
+          </label>
+          <label>
+            Problem type
+            <select name="category">
+              <option value="water">Water</option>
+              <option value="roads">Roads</option>
+              <option value="air">Air</option>
+              <option value="flood">Flood</option>
+            </select>
+          </label>
+          <label>
+            Severity
+            <select name="severity">
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="critical">Critical</option>
+            </select>
+          </label>
+          <label>
+            AI confidence
+            <input name="confidence" type="number" min="0.5" max="0.99" step="0.01" value="0.84" required>
+          </label>
+          <label class="wide-input">
+            What happened?
+            <textarea name="summary" rows="3" placeholder="Describe what the model detected and why it matters." required></textarea>
+          </label>
+          <label class="wide-input">
+            What happens if nothing is done?
+            <textarea name="impact" rows="2" placeholder="Describe the likely service or safety impact."></textarea>
+          </label>
+          <label class="wide-input">
+            What should the city do?
+            <textarea name="recommendation" rows="2" placeholder="Describe the ideal autonomous response."></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="primary-btn">Create Scenario</button>
+            <p id="formStatus" class="muted">Use this only in Operations View.</p>
+          </div>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <script src="./vendor/maplibre-gl.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
