@@ -56,6 +56,27 @@
 
 ---
 
+### Scenario Presets & Repair Verification
+> Named scenario presets let you launch specific city failures — burst water mains, pollution spikes, transit fractures, and flash floods — each with their own visual footprint on the map. The decision context panel shows AI confidence, map interpretation, and a public-facing note alongside the full repair worklog.
+
+![Scenario Presets and Repair Verification](./screenshots/06-scenario-presets-repair.png)
+
+---
+
+### Pollution Plume Detection & Drone Dispatch
+> When an industrial pollution plume is detected, the system visualizes translucent drift patterns on the map with floating sample points. An AirSweep drone is auto-dispatched to verify the source and position downwind for neutralization, with live mission progress tracked in the sidebar.
+
+![Pollution Plume and Drone Dispatch](./screenshots/07-pollution-plume-dispatch.png)
+
+---
+
+### Live Mission Progress Tracking
+> Watch autonomous repair missions advance in real-time — from 35% to 83% completion — as assets like AirSweep Unit 02 execute their assigned tasks. The scenario spotlight card identifies the incident type, location, and priority tags at a glance.
+
+![Mission Progress Tracking](./screenshots/08-mission-progress-tracking.png)
+
+---
+
 ## ✨ Features
 
 ### 🧠 AI-Powered Intelligence
