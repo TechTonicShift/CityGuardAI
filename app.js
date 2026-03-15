@@ -37,6 +37,10 @@ const els = {
   timelineList: document.getElementById("timelineList"),
   mapStatusTitle: document.getElementById("mapStatusTitle"),
   mapStatusText: document.getElementById("mapStatusText"),
+  scenarioPresetList: document.getElementById("scenarioPresetList"),
+  scenarioSpotlightTitle: document.getElementById("scenarioSpotlightTitle"),
+  scenarioSpotlightText: document.getElementById("scenarioSpotlightText"),
+  scenarioSpotlightMeta: document.getElementById("scenarioSpotlightMeta"),
   refreshBtn: document.getElementById("refreshBtn"),
   simulateBtn: document.getElementById("simulateBtn"),
   modeBtn: document.getElementById("modeBtn"),
@@ -117,6 +121,35 @@ function applyViewMode() {
   }
 }
 
+function scenarioCueText(incident) {
+  if (!incident) {
+    return "";
+  }
+
+  if (incident.visualType === "water_burst") {
+    return `Watch the pressure bloom under ${incident.landmarkLabel || incident.location} as PipeBot isolates the main.`;
+  }
+  if (incident.visualType === "pollution_plume") {
+    return `The drifting plume shows where emissions are moving while the drone maps the source near ${incident.landmarkLabel || incident.location}.`;
+  }
+  if (incident.visualType === "flood_surge") {
+    return `The flood pocket and front line show where runoff is accumulating and where it will push next near ${incident.landmarkLabel || incident.location}.`;
+  }
+  return `The highlighted lane and fracture seams show the section under repair on ${incident.location}.`;
+}
+
+function scenarioMetaTags(incident) {
+  if (!incident) {
+    return [];
+  }
+
+  return [
+    incident.visualLabel,
+    incident.landmarkLabel || incident.location,
+    `${titleCase(incident.severity)} priority`
+  ];
+}
+
 function renderHeroStory(payload) {
   const activeIncident = payload.incidents.find((incident) => incident.status !== "resolved");
   const latestEvent = payload.timeline[0];
@@ -124,7 +157,7 @@ function renderHeroStory(payload) {
   if (state.viewMode === "citizen") {
     if (activeIncident) {
       els.heroStoryTitle.textContent = `${activeIncident.title} is being handled now.`;
-      els.heroStoryText.textContent = `The city has detected the issue near ${activeIncident.location} and is actively responding. Public impact is being minimized while repairs continue.`;
+      els.heroStoryText.textContent = `${activeIncident.publicNote} ${scenarioCueText(activeIncident)}`;
     } else {
       els.heroStoryTitle.textContent = "All essential services are operating normally.";
       els.heroStoryText.textContent = "The district has no active issues affecting residents right now.";
@@ -134,7 +167,7 @@ function renderHeroStory(payload) {
 
   if (activeIncident) {
     els.heroStoryTitle.textContent = `${activeIncident.title}`;
-    els.heroStoryText.textContent = `${activeIncident.aiAssessment.predictedImpact} The system is responding ${activeIncident.assignedAssetId ? "with an assigned asset" : "and preparing a response"} now.`;
+    els.heroStoryText.textContent = `${activeIncident.aiAssessment.predictedImpact} ${scenarioCueText(activeIncident)} The system is responding ${activeIncident.assignedAssetId ? "with an assigned asset" : "and preparing a response"} now.`;
     return;
   }
 
@@ -142,6 +175,42 @@ function renderHeroStory(payload) {
     els.heroStoryTitle.textContent = "The city is stable.";
     els.heroStoryText.textContent = latestEvent.message;
   }
+}
+
+function renderScenarioPresets(payload) {
+  const presets = payload.scenarios ? payload.scenarios.presets : [];
+  const activeKeys = new Set(payload.incidents
+    .filter((incident) => incident.status !== "resolved")
+    .map((incident) => incident.scenarioKey));
+
+  els.scenarioPresetList.innerHTML = presets.map((preset) => `
+    <button
+      class="preset-card ${activeKeys.has(preset.key) ? "is-live" : ""}"
+      type="button"
+      data-scenario-key="${preset.key}"
+    >
+      <span class="badge">${preset.label}</span>
+      <strong>${titleCase(preset.category)} / ${titleCase(preset.severity)}</strong>
+      <p>${preset.description}</p>
+      <small>${preset.visualLabel} near ${preset.landmarkLabel}</small>
+    </button>
+  `).join("");
+}
+
+function renderScenarioSpotlight(payload) {
+  const incident = getSelectedIncident(payload) || payload.incidents.find((item) => item.status !== "resolved");
+  if (!incident) {
+    els.scenarioSpotlightTitle.textContent = "Waiting for a scenario...";
+    els.scenarioSpotlightText.textContent = "Launch a preset or select an incident to see what the city is visualizing.";
+    els.scenarioSpotlightMeta.innerHTML = "";
+    return;
+  }
+
+  els.scenarioSpotlightTitle.textContent = incident.visualLabel || incident.title;
+  els.scenarioSpotlightText.textContent = incident.visualSummary || scenarioCueText(incident);
+  els.scenarioSpotlightMeta.innerHTML = scenarioMetaTags(incident)
+    .map((tag) => `<span class="pill">${tag}</span>`)
+    .join("");
 }
 
 function renderOverview(payload) {
@@ -186,6 +255,8 @@ function renderOverview(payload) {
   `).join("");
 
   renderHeroStory(payload);
+  renderScenarioPresets(payload);
+  renderScenarioSpotlight(payload);
 }
 
 function renderAiCard() {
@@ -278,6 +349,8 @@ function renderDetail(payload) {
     </div>
     <p>${incident.summary}</p>
     <p><strong>Why this matters</strong> ${incident.aiAssessment.predictedImpact}</p>
+    <p><strong>What the map is showing</strong> ${incident.visualSummary}</p>
+    <p><strong>Public note</strong> ${incident.publicNote}</p>
     <p><strong>AI confidence</strong> ${(incident.aiAssessment.confidence * 100).toFixed(0)}%</p>
     <p><strong>Recommended city action</strong> ${incident.aiAssessment.recommendation}</p>
     <ul class="incident-log">
@@ -307,6 +380,7 @@ function renderCitizenBrief(payload) {
     <div class="citizen-item">
       <strong>Current public notice</strong>
       <p>${active[0].title} is the most important active issue in the district.</p>
+      <p>${active[0].publicNote}</p>
       <ul>
         ${active.slice(0, 3).map((incident) => `<li>${incident.location}: ${incident.aiAssessment.predictedImpact}</li>`).join("")}
       </ul>
@@ -445,6 +519,42 @@ function popupForFeature(kind, properties) {
       <p>${titleCase(properties.type)} · Battery ${properties.battery}% · ${titleCase(properties.status)}</p>
     `;
   }
+  if (kind === "building") {
+    return `
+      <strong>${properties.name}</strong>
+      <p>${titleCase(properties.group)} building · ${properties.district}</p>
+    `;
+  }
+  if (kind === "landmark") {
+    return `
+      <strong>${properties.name}</strong>
+      <p>${titleCase(properties.kind)} landmark</p>
+    `;
+  }
+  if (kind === "water") {
+    return `
+      <strong>${properties.title}</strong>
+      <p>Pressure bloom footprint</p>
+    `;
+  }
+  if (kind === "pollution") {
+    return `
+      <strong>${properties.title}</strong>
+      <p>Pollution plume drift area</p>
+    `;
+  }
+  if (kind === "flood") {
+    return `
+      <strong>${properties.title}</strong>
+      <p>Flood spread and runoff front</p>
+    `;
+  }
+  if (kind === "road") {
+    return `
+      <strong>${properties.title}</strong>
+      <p>Road fracture envelope</p>
+    `;
+  }
   return `
     <strong>${properties.name}</strong>
     <p>${titleCase(properties.category)} sensor · ${titleCase(properties.status)}</p>
@@ -474,17 +584,37 @@ function attachHoverPopup(map, layerId, kind) {
 }
 
 function addMapLayers(map) {
+  map.addSource("waterBodies", { type: "geojson", data: emptyCollection });
   map.addSource("zones", { type: "geojson", data: emptyCollection });
   map.addSource("roads", { type: "geojson", data: emptyCollection });
   map.addSource("pipes", { type: "geojson", data: emptyCollection });
   map.addSource("buildings", { type: "geojson", data: emptyCollection });
   map.addSource("depots", { type: "geojson", data: emptyCollection });
+  map.addSource("landmarks", { type: "geojson", data: emptyCollection });
   map.addSource("incidentAreas", { type: "geojson", data: emptyCollection });
+  map.addSource("waterBursts", { type: "geojson", data: emptyCollection });
+  map.addSource("waterSprays", { type: "geojson", data: emptyCollection });
+  map.addSource("pollutionPlumes", { type: "geojson", data: emptyCollection });
+  map.addSource("pollutionParticles", { type: "geojson", data: emptyCollection });
+  map.addSource("floodExtents", { type: "geojson", data: emptyCollection });
+  map.addSource("floodFronts", { type: "geojson", data: emptyCollection });
+  map.addSource("roadEnvelopes", { type: "geojson", data: emptyCollection });
+  map.addSource("roadFractures", { type: "geojson", data: emptyCollection });
   map.addSource("routes", { type: "geojson", data: emptyCollection });
   map.addSource("sensors", { type: "geojson", data: emptyCollection });
   map.addSource("incidents", { type: "geojson", data: emptyCollection });
   map.addSource("assets", { type: "geojson", data: emptyCollection });
   map.addSource("selectedIncident", { type: "geojson", data: emptyCollection });
+
+  map.addLayer({
+    id: "water-bodies-fill",
+    type: "fill",
+    source: "waterBodies",
+    paint: {
+      "fill-color": ["get", "color"],
+      "fill-opacity": 0.78
+    }
+  });
 
   map.addLayer({
     id: "zones-fill",
@@ -520,6 +650,46 @@ function addMapLayers(map) {
   });
 
   map.addLayer({
+    id: "road-envelopes-fill",
+    type: "fill",
+    source: "roadEnvelopes",
+    paint: {
+      "fill-color": ["get", "color"],
+      "fill-opacity": 0.18
+    }
+  });
+
+  map.addLayer({
+    id: "flood-extents-fill",
+    type: "fill",
+    source: "floodExtents",
+    paint: {
+      "fill-color": ["get", "color"],
+      "fill-opacity": 0.18
+    }
+  });
+
+  map.addLayer({
+    id: "pollution-plumes-fill",
+    type: "fill",
+    source: "pollutionPlumes",
+    paint: {
+      "fill-color": ["get", "color"],
+      "fill-opacity": 0.16
+    }
+  });
+
+  map.addLayer({
+    id: "water-bursts-fill",
+    type: "fill",
+    source: "waterBursts",
+    paint: {
+      "fill-color": ["get", "color"],
+      "fill-opacity": 0.2
+    }
+  });
+
+  map.addLayer({
     id: "incident-areas-fill",
     type: "fill",
     source: "incidentAreas",
@@ -538,6 +708,53 @@ function addMapLayers(map) {
       "fill-extrusion-height": ["get", "height"],
       "fill-extrusion-base": 0,
       "fill-extrusion-opacity": 0.92
+    }
+  });
+
+  map.addLayer({
+    id: "landmarks-points",
+    type: "circle",
+    source: "landmarks",
+    paint: {
+      "circle-color": "#fff6df",
+      "circle-radius": 4.5,
+      "circle-stroke-color": "#1e1d1a",
+      "circle-stroke-width": 1.1
+    }
+  });
+
+  map.addLayer({
+    id: "road-fractures-line",
+    type: "line",
+    source: "roadFractures",
+    paint: {
+      "line-color": ["get", "color"],
+      "line-width": 4.5,
+      "line-opacity": 0.92
+    }
+  });
+
+  map.addLayer({
+    id: "water-sprays-line",
+    type: "line",
+    source: "waterSprays",
+    paint: {
+      "line-color": ["get", "color"],
+      "line-width": 3,
+      "line-opacity": 0.9,
+      "line-dasharray": [0.6, 1.2]
+    }
+  });
+
+  map.addLayer({
+    id: "flood-fronts-line",
+    type: "line",
+    source: "floodFronts",
+    paint: {
+      "line-color": ["get", "color"],
+      "line-width": 3,
+      "line-opacity": 0.94,
+      "line-dasharray": [1.1, 1.1]
     }
   });
 
@@ -578,6 +795,19 @@ function addMapLayers(map) {
       "circle-radius": 5.5,
       "circle-stroke-color": "#ffffff",
       "circle-stroke-width": 1.4
+    }
+  });
+
+  map.addLayer({
+    id: "pollution-particles",
+    type: "circle",
+    source: "pollutionParticles",
+    paint: {
+      "circle-color": ["get", "color"],
+      "circle-opacity": 0.55,
+      "circle-radius": 6.5,
+      "circle-stroke-color": "rgba(255, 255, 255, 0.7)",
+      "circle-stroke-width": 0.8
     }
   });
 
@@ -648,6 +878,12 @@ function addMapLayers(map) {
   attachHoverPopup(map, "incidents-core", "incident");
   attachHoverPopup(map, "assets-points", "asset");
   attachHoverPopup(map, "sensors-points", "sensor");
+  attachHoverPopup(map, "buildings-3d", "building");
+  attachHoverPopup(map, "landmarks-points", "landmark");
+  attachHoverPopup(map, "water-bursts-fill", "water");
+  attachHoverPopup(map, "pollution-plumes-fill", "pollution");
+  attachHoverPopup(map, "flood-extents-fill", "flood");
+  attachHoverPopup(map, "road-envelopes-fill", "road");
 }
 
 function updateMapSources(payload) {
@@ -655,12 +891,22 @@ function updateMapSources(payload) {
     return;
   }
 
+  state.map.getSource("waterBodies").setData(payload.map.waterBodies);
   state.map.getSource("zones").setData(payload.map.zones);
   state.map.getSource("roads").setData(payload.map.roads);
   state.map.getSource("pipes").setData(payload.map.pipes);
   state.map.getSource("buildings").setData(payload.map.buildings);
   state.map.getSource("depots").setData(payload.map.depots);
+  state.map.getSource("landmarks").setData(payload.map.landmarks);
   state.map.getSource("incidentAreas").setData(payload.map.incidentAreas);
+  state.map.getSource("waterBursts").setData(payload.map.waterBursts);
+  state.map.getSource("waterSprays").setData(payload.map.waterSprays);
+  state.map.getSource("pollutionPlumes").setData(payload.map.pollutionPlumes);
+  state.map.getSource("pollutionParticles").setData(payload.map.pollutionParticles);
+  state.map.getSource("floodExtents").setData(payload.map.floodExtents);
+  state.map.getSource("floodFronts").setData(payload.map.floodFronts);
+  state.map.getSource("roadEnvelopes").setData(payload.map.roadEnvelopes);
+  state.map.getSource("roadFractures").setData(payload.map.roadFractures);
   state.map.getSource("routes").setData(payload.map.routes);
   state.map.getSource("sensors").setData(payload.map.sensors);
   state.map.getSource("incidents").setData(payload.map.incidents);
@@ -727,6 +973,9 @@ function animateMapPulse() {
   const phase = (Date.now() % 1600) / 1600;
   const pulse = 14 + Math.sin(phase * Math.PI * 2) * 4;
   const glow = 24 + Math.sin(phase * Math.PI * 2) * 6;
+  const waterOpacity = 0.14 + Math.abs(Math.sin(phase * Math.PI * 2)) * 0.12;
+  const plumeOpacity = 0.12 + Math.abs(Math.sin(phase * Math.PI * 2 + 0.7)) * 0.08;
+  const floodOpacity = 0.12 + Math.abs(Math.sin(phase * Math.PI * 2 + 1.2)) * 0.1;
 
   state.map.setPaintProperty("incidents-core", "circle-radius", [
     "case",
@@ -737,6 +986,15 @@ function animateMapPulse() {
   state.map.setPaintProperty("incidents-glow", "circle-radius", glow);
   state.map.setPaintProperty("incidents-glow", "circle-opacity", 0.1 + Math.abs(Math.sin(phase * Math.PI * 2)) * 0.12);
   state.map.setPaintProperty("selected-incident-ring", "circle-radius", pulse + 8);
+  state.map.setPaintProperty("water-bursts-fill", "fill-opacity", waterOpacity);
+  state.map.setPaintProperty("water-sprays-line", "line-opacity", 0.72 + Math.abs(Math.sin(phase * Math.PI * 2)) * 0.22);
+  state.map.setPaintProperty("pollution-plumes-fill", "fill-opacity", plumeOpacity);
+  state.map.setPaintProperty("pollution-particles", "circle-radius", 4.5 + Math.abs(Math.sin(phase * Math.PI * 2 + 0.4)) * 3.2);
+  state.map.setPaintProperty("pollution-particles", "circle-opacity", 0.4 + Math.abs(Math.sin(phase * Math.PI * 2 + 0.9)) * 0.28);
+  state.map.setPaintProperty("flood-extents-fill", "fill-opacity", floodOpacity);
+  state.map.setPaintProperty("flood-fronts-line", "line-opacity", 0.64 + Math.abs(Math.sin(phase * Math.PI * 2)) * 0.24);
+  state.map.setPaintProperty("road-envelopes-fill", "fill-opacity", 0.11 + Math.abs(Math.sin(phase * Math.PI * 2 + 1.4)) * 0.08);
+  state.map.setPaintProperty("road-fractures-line", "line-opacity", 0.7 + Math.abs(Math.sin(phase * Math.PI * 2 + 0.2)) * 0.22);
   state.pulseFrame = window.requestAnimationFrame(animateMapPulse);
 }
 
@@ -753,6 +1011,7 @@ function focusIncident(incidentId, fly = false) {
   state.selectedIncidentId = incidentId;
   renderDetail(state.payload);
   renderIncidents(state.payload);
+  renderScenarioSpotlight(state.payload);
 
   if (state.mapReady) {
     state.map.getSource("selectedIncident").setData(selectedSourceData());
@@ -847,6 +1106,13 @@ async function resetDemo() {
   els.formStatus.textContent = "Scenario reset.";
 }
 
+async function launchScenarioPreset(key) {
+  const response = await api(`/api/scenarios/${key}`, { method: "POST" });
+  state.selectedIncidentId = response.incident.id;
+  await refresh();
+  focusIncident(response.incident.id, true);
+}
+
 async function generateIncidentAi() {
   const incident = getSelectedIncident();
   if (!incident) {
@@ -920,6 +1186,14 @@ function handleTimelineClick(event) {
     return;
   }
   focusIncident(item.dataset.focusId, true);
+}
+
+function handleScenarioPresetClick(event) {
+  const button = event.target.closest("[data-scenario-key]");
+  if (!button) {
+    return null;
+  }
+  return launchScenarioPreset(button.dataset.scenarioKey);
 }
 
 function initHints() {
@@ -1070,6 +1344,15 @@ els.detailCard.addEventListener("click", (event) => {
 
 els.incidentList.addEventListener("click", handleIncidentClick);
 els.timelineList.addEventListener("click", handleTimelineClick);
+els.scenarioPresetList.addEventListener("click", (event) => {
+  const pending = handleScenarioPresetClick(event);
+  if (!pending) {
+    return;
+  }
+  pending.catch((error) => {
+    els.mapStatusText.textContent = error.message;
+  });
+});
 
 els.incidentForm.addEventListener("submit", (event) => {
   handleFormSubmit(event).catch((error) => {

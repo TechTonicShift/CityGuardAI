@@ -144,12 +144,21 @@
             <p class="panel-copy">One map. One active story. One visible chain from detection to verified repair.</p>
           </div>
           <div class="control-row">
-            <button id="simulateBtn" class="primary-btn">Run Demo Scenario</button>
+            <button id="simulateBtn" class="primary-btn">Run Random Scenario</button>
             <button id="modeBtn" class="secondary-btn">Automatic Response</button>
             <button id="resetBtn" class="ghost-btn">Reset Scenario</button>
             <button id="recenterBtn" class="ghost-btn">Recenter Map</button>
             <button id="refreshBtn" class="ghost-btn">Refresh</button>
           </div>
+        </div>
+
+        <div class="scenario-toolbar">
+          <div class="scenario-toolbar__copy">
+            <p class="section-kicker">Scenario Presets</p>
+            <strong>Launch named city failures and show their visual footprint immediately.</strong>
+            <p class="muted">Burst mains, pollution spikes, fractures, and floods each get their own map behavior.</p>
+          </div>
+          <div id="scenarioPresetList" class="preset-grid"></div>
         </div>
 
         <div class="map-frame">
@@ -161,10 +170,19 @@
             <p id="mapStatusText">Waiting for the first state sync.</p>
           </div>
 
+          <div class="map-overlay scenario-overlay">
+            <span class="overlay-label">Scenario Spotlight</span>
+            <strong id="scenarioSpotlightTitle">Waiting for a scenario...</strong>
+            <p id="scenarioSpotlightText">Launch a preset or select an incident to see what the city is visualizing.</p>
+            <div id="scenarioSpotlightMeta" class="scenario-meta"></div>
+          </div>
+
           <div class="map-overlay legend-overlay">
             <strong>What you are seeing</strong>
             <div class="legend-list">
               <span><i class="dot alert"></i> Active problem</span>
+              <span><i class="dot water"></i> Water burst or flood zone</span>
+              <span><i class="dot air"></i> Pollution plume</span>
               <span><i class="dot route"></i> Repair route</span>
               <span><i class="dot asset"></i> Robot or drone</span>
               <span><i class="dot pipe"></i> Utility network</span>

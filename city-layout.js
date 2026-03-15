@@ -157,6 +157,12 @@ function buildDistrictLayout() {
       height: 68,
       group: "infrastructure"
     }),
+    polygonFeature("b-public-school", rectangle(-0.00078, -0.00056, 0.00018, 0.00013), {
+      name: "Peninsula Public School",
+      district: "Utility South",
+      height: 48,
+      group: "education"
+    }),
     polygonFeature("b-water-lab", rectangle(-0.00092, -0.00038, 0.00015, 0.00012), {
       name: "Hydro Lab",
       district: "Utility South",
@@ -193,8 +199,8 @@ function buildDistrictLayout() {
       height: 58,
       group: "residential"
     }),
-    polygonFeature("b-industrial-stack", rectangle(0.00086, 0.00100, 0.00018, 0.00013), {
-      name: "Industrial Stack",
+    polygonFeature("b-east-factory", rectangle(0.00086, 0.00100, 0.00018, 0.00013), {
+      name: "East Stack Factory",
       district: "Industrial Belt",
       height: 124,
       group: "industrial"
@@ -284,6 +290,19 @@ function buildDistrictLayout() {
     })
   ];
 
+  const waterBodies = [
+    polygonFeature("water-river-channel", [[
+      point(-0.00185, 0.00148),
+      point(0.00185, 0.00148),
+      point(0.00185, 0.00178),
+      point(-0.00185, 0.00178),
+      point(-0.00185, 0.00148)
+    ]], {
+      name: "Peninsula River",
+      kind: "river"
+    })
+  ];
+
   const depots = [
     pointFeature("hub-command", point(0.00014, 0.00004), {
       name: "City Orchestrator",
@@ -307,6 +326,25 @@ function buildDistrictLayout() {
     })
   ];
 
+  const landmarks = [
+    pointFeature("landmark-school", point(-0.00078, -0.00056), {
+      name: "Peninsula Public School",
+      kind: "school"
+    }),
+    pointFeature("landmark-factory", point(0.00086, 0.00100), {
+      name: "East Stack Factory",
+      kind: "factory"
+    }),
+    pointFeature("landmark-river", point(-0.00072, 0.00136), {
+      name: "River Edge",
+      kind: "district"
+    }),
+    pointFeature("landmark-civic", point(-0.00055, 0.00020), {
+      name: "Civic Hall",
+      kind: "civic"
+    })
+  ];
+
   return {
     meta: {
       name: "NeoGrid Peninsula District",
@@ -321,7 +359,9 @@ function buildDistrictLayout() {
     roads,
     pipes,
     zones,
+    waterBodies,
     depots,
+    landmarks,
     anchors: {
       sensors: {
         "W-204": point(-0.00076, -0.00074),
@@ -334,6 +374,12 @@ function buildDistrictLayout() {
         "asset-pipebot-11": point(-0.00094, -0.00092),
         "asset-rover-07": point(0.00008, -0.00108),
         "asset-airsweep-02": point(0.00134, 0.00102)
+      },
+      scenarios: {
+        "burst-main-school": point(-0.00078, -0.00072),
+        "pollution-spike-factory": point(0.00092, 0.00106),
+        "transit-corridor-fracture": point(0.00054, -0.00096),
+        "flash-flood-river-edge": point(-0.00102, 0.00122)
       }
     }
   };

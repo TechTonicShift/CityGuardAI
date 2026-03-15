@@ -119,51 +119,65 @@
   "incidents": [
     {
       "id": "INC-4000",
-      "title": "Micro leak near Sector 12 main",
+      "title": "Burst main under Peninsula Public School",
       "category": "water",
       "severity": "high",
       "status": "in_progress",
       "detectedAt": "2026-03-15T00:00:00.000Z",
-      "location": "Sector 12 Main",
-      "coordinate": [77.59384, 12.97086],
+      "location": "Peninsula Public School / Sector 12 Main",
+      "coordinate": [77.59382, 12.97088],
       "sensorId": "W-204",
       "targetType": "pipe",
       "targetId": "pipe-sector-12",
-      "summary": "Pressure differential indicates underground crack propagation below the civic utility branch.",
+      "summary": "Pressure mesh and subsurface acoustic sensors indicate a fast-rising rupture directly below the school approach.",
       "aiAssessment": {
-        "confidence": 0.87,
-        "predictedImpact": "Water loss of 1400L in 20 minutes if untreated.",
-        "recommendation": "Dispatch PipeBot with emergency clamp route and isolate branch valve."
+        "confidence": 0.93,
+        "predictedImpact": "Water loss and lane washout risk could disrupt the school frontage within 12 minutes.",
+        "recommendation": "Dispatch PipeBot, isolate the branch valve, and hold a school perimeter until pressure stabilizes."
       },
+      "scenarioKey": "burst-main-school",
+      "visualType": "water_burst",
+      "visualLabel": "Pressure bloom",
+      "visualSummary": "A blue pressure bloom and spray spokes show where the underground main is breaking beneath the school frontage.",
+      "publicNote": "The city has placed the school frontage into protective response mode while the main is isolated.",
+      "landmarkId": "b-public-school",
+      "landmarkLabel": "Peninsula Public School",
       "assignedAssetId": "asset-pipebot-11",
       "worklog": [
-        "PipeBot 11 is sealing the pressure breach.",
-        "AI classified event as a high priority pipe failure.",
-        "Pressure anomaly crossed the leak threshold."
+        "PipeBot 11 is sealing the school-frontage breach.",
+        "AI classified event as a critical burst-main risk under the school approach.",
+        "Pressure anomaly crossed the rupture threshold."
       ]
     },
     {
       "id": "INC-3999",
-      "title": "Localized emissions plume above industrial belt",
+      "title": "Pollution spike near East Stack Factory",
       "category": "air",
       "severity": "high",
       "status": "in_progress",
       "detectedAt": "2026-03-15T00:00:00.000Z",
-      "location": "Industrial Belt",
-      "coordinate": [77.59578, 12.97268],
+      "location": "East Stack Factory / Industrial Belt",
+      "coordinate": [77.59552, 12.97266],
       "sensorId": "A-076",
       "targetType": "zone",
       "targetId": "zone-east",
-      "summary": "A short-lived pollutant plume was detected near the east industrial stack with rising particulate density.",
+      "summary": "Air quality towers and stack telemetry caught a sudden particulate jump near the primary factory exhaust path.",
       "aiAssessment": {
-        "confidence": 0.83,
-        "predictedImpact": "AQI likely to exceed 140 for nearby blocks within 12 minutes.",
-        "recommendation": "Launch aerial drone for plume mapping and prepare AirSweep for neutralization."
+        "confidence": 0.88,
+        "predictedImpact": "AQI could exceed 145 in nearby blocks within 15 minutes if the source is not neutralized.",
+        "recommendation": "Launch the mapping drone, verify the source, and position AirSweep downwind for neutralization."
       },
+      "scenarioKey": "pollution-spike-factory",
+      "visualType": "pollution_plume",
+      "visualLabel": "Drift plume",
+      "visualSummary": "A translucent plume shows where particulates are drifting, while floating sample points show where the drone is validating air quality.",
+      "publicNote": "The system is containing the emissions spike and tracking downwind spread in real time.",
+      "landmarkId": "b-east-factory",
+      "landmarkLabel": "East Stack Factory",
       "assignedAssetId": "asset-drone-03",
       "worklog": [
-        "Aerial Drone 03 is mapping the emissions source.",
-        "Source triangulation narrowed the plume to the industrial belt.",
+        "Aerial Drone 03 is mapping the emissions source over the factory stack.",
+        "Source triangulation narrowed the plume to the east industrial stack.",
         "Air quality tower flagged a hazardous rise."
       ]
     }
@@ -175,13 +189,13 @@
       "assetId": "asset-pipebot-11",
       "assetType": "robot",
       "objective": "Seal leak and restore pressure baseline.",
-      "etaMinutes": 4,
-      "progress": 62,
+      "etaMinutes": 6,
+      "progress": 18,
       "status": "active",
       "route": [
         [77.59366, 12.97068],
-        [77.59384, 12.97068],
-        [77.59384, 12.97086]
+        [77.59382, 12.97068],
+        [77.59382, 12.97088]
       ]
     },
     {
@@ -190,13 +204,13 @@
       "assetId": "asset-drone-03",
       "assetType": "drone",
       "objective": "Map pollutant spread and verify source for containment.",
-      "etaMinutes": 5,
-      "progress": 46,
+      "etaMinutes": 7,
+      "progress": 14,
       "status": "active",
       "route": [
         [77.59546, 12.97218],
-        [77.59580, 12.97255],
-        [77.59578, 12.97268]
+        [77.59567, 12.97254],
+        [77.59552, 12.97266]
       ]
     }
   ],

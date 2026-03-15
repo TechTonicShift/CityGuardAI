@@ -3,9 +3,9 @@
     "name": "NeoGrid City",
     "districtName": "Peninsula District",
     "mode": "auto-heal",
-    "health": 77,
-    "resolvedToday": 123,
-    "activeIncidents": 5,
+    "health": 83,
+    "resolvedToday": 55,
+    "activeIncidents": 2,
     "uptime": 99.982
   },
   "sensors": [
@@ -14,10 +14,10 @@
       "name": "Water Pressure Line",
       "category": "water",
       "location": "Sector 12 Main",
-      "reading": "Pressure delta 20%",
-      "health": 64,
-      "status": "alert",
-      "lastUpdatedAt": "2026-03-15T16:41:07.044Z",
+      "reading": "Recovered",
+      "health": 98,
+      "status": "nominal",
+      "lastUpdatedAt": "2026-03-15T17:30:33.596Z",
       "position": [
         77.59384,
         12.97086
@@ -30,10 +30,10 @@
       "name": "Road Vision Unit",
       "category": "roads",
       "location": "Transit Corridor",
-      "reading": "Recovered",
-      "health": 98,
-      "status": "nominal",
-      "lastUpdatedAt": "2026-03-15T16:41:27.049Z",
+      "reading": "Fracture spread 15%",
+      "health": 91,
+      "status": "alert",
+      "lastUpdatedAt": "2026-03-15T17:30:23.595Z",
       "position": [
         77.59518,
         12.97064
@@ -49,7 +49,7 @@
       "reading": "Recovered",
       "health": 98,
       "status": "nominal",
-      "lastUpdatedAt": "2026-03-15T16:41:27.049Z",
+      "lastUpdatedAt": "2026-03-15T17:30:33.596Z",
       "position": [
         77.59578,
         12.97268
@@ -62,10 +62,10 @@
       "name": "Storm Drain Sonar",
       "category": "flood",
       "location": "River Edge",
-      "reading": "Recovered",
-      "health": 98,
-      "status": "nominal",
-      "lastUpdatedAt": "2026-03-15T16:41:27.049Z",
+      "reading": "Flow surge 15%",
+      "health": 91,
+      "status": "alert",
+      "lastUpdatedAt": "2026-03-15T17:30:28.596Z",
       "position": [
         77.59352,
         12.97278
@@ -86,7 +86,7 @@
         "patch delivery"
       ],
       "status": "charging",
-      "battery": 56,
+      "battery": 39,
       "location": "Central Hangar",
       "homePosition": [
         77.59546,
@@ -108,18 +108,18 @@
         "internal crawl",
         "pressure validation"
       ],
-      "status": "busy",
-      "battery": 58,
+      "status": "charging",
+      "battery": 52,
       "location": "Utility Depot",
       "homePosition": [
         77.59366,
         12.97068
       ],
       "position": [
-        77.59384,
-        12.97086
+        77.59366,
+        12.97068
       ],
-      "currentMission": "INC-4155"
+      "currentMission": null
     },
     {
       "id": "asset-rover-07",
@@ -131,18 +131,18 @@
         "asphalt print repair",
         "traffic cone deployment"
       ],
-      "status": "charging",
-      "battery": 64,
+      "status": "busy",
+      "battery": 30,
       "location": "Mobility Bay",
       "homePosition": [
         77.59468,
         12.97052
       ],
       "position": [
-        77.59468,
-        12.97052
+        77.59514,
+        12.970574
       ],
-      "currentMission": null
+      "currentMission": "INC-4016"
     },
     {
       "id": "asset-airsweep-02",
@@ -155,2322 +155,334 @@
         "containment",
         "pressure diversion"
       ],
-      "status": "ready",
-      "battery": 51,
+      "status": "busy",
+      "battery": 33,
       "location": "Industrial Hub",
       "homePosition": [
         77.59594,
         12.97262
       ],
       "position": [
-        77.59594,
+        77.594294,
         12.97262
       ],
-      "currentMission": null
+      "currentMission": "INC-4017"
     }
   ],
   "incidents": [
     {
-      "id": "INC-4158",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "open",
-      "detectedAt": "2026-03-15T16:41:07.044Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": null,
-      "worklog": [
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4157",
-      "title": "Storm drain overflow risk rising",
+      "id": "INC-4017",
+      "title": "Flash flood near River Edge",
       "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:40:52.040Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 95%.",
-        "AirSweep Unit 02 advanced repair mission to 80%.",
-        "AirSweep Unit 02 advanced repair mission to 66%.",
-        "AirSweep Unit 02 advanced repair mission to 52%.",
-        "AirSweep Unit 02 advanced repair mission to 38%.",
-        "AirSweep Unit 02 advanced repair mission to 28%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4156",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:40:42.038Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 88%.",
-        "Aerial Drone 03 advanced repair mission to 70%.",
-        "Aerial Drone 03 advanced repair mission to 57%.",
-        "Aerial Drone 03 advanced repair mission to 36%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4155",
-      "title": "Water leak prediction triggered",
-      "category": "water",
       "severity": "high",
       "status": "in_progress",
-      "detectedAt": "2026-03-15T16:40:32.036Z",
-      "location": "Sector 12 Main",
+      "detectedAt": "2026-03-15T17:30:28.596Z",
+      "location": "River Edge retention basin",
       "coordinate": [
-        77.59384,
-        12.97086
+        77.59358,
+        12.97282
       ],
-      "sensorId": "W-204",
+      "sensorId": "P-330",
       "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
+      "targetId": "pipe-river-drain",
+      "summary": "Storm-drain sonar reports a rapid inflow surge near the retention basin and river-adjacent drain spine.",
       "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
+        "confidence": 0.84,
+        "predictedImpact": "Localized curb flooding could affect river-edge access roads within 10 minutes.",
+        "recommendation": "Dispatch AirSweep for pressure diversion, inspect the drain spine, and route runoff away from housing."
       },
-      "assignedAssetId": "asset-pipebot-11",
+      "scenarioKey": "flash-flood-river-edge",
+      "visualType": "flood_surge",
+      "visualLabel": "Flood spread",
+      "visualSummary": "A blue flood pocket shows where water is pooling, and the wave front traces where runoff is pushing next.",
+      "publicNote": "The city is diverting flow and protecting the river-edge block while drain pressure is reduced.",
+      "landmarkId": "b-river-housing",
+      "landmarkLabel": "River Edge",
+      "assignedAssetId": "asset-airsweep-02",
       "worklog": [
-        "PipeBot 11 advanced repair mission to 93%.",
-        "PipeBot 11 advanced repair mission to 75%.",
-        "PipeBot 11 advanced repair mission to 56%.",
-        "PipeBot 11 advanced repair mission to 39%.",
-        "PipeBot 11 advanced repair mission to 25%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
+        "AirSweep Unit 02 advanced repair mission to 45%.",
+        "AirSweep Unit 02 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
+        "AI classified event as flood with high urgency."
       ]
     },
     {
-      "id": "INC-4154",
-      "title": "Road fracture progression detected",
+      "id": "INC-4016",
+      "title": "Transit corridor fracture detected",
       "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:40:22.034Z",
+      "severity": "high",
+      "status": "in_progress",
+      "detectedAt": "2026-03-15T17:30:23.595Z",
       "location": "Transit Corridor",
       "coordinate": [
-        77.59518,
+        77.59514,
         12.97064
       ],
       "sensorId": "R-118",
       "targetType": "road",
       "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
+      "summary": "Surface vision and axle-vibration nodes found a crack line spreading across the main transit lane.",
       "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
+        "confidence": 0.86,
+        "predictedImpact": "Pothole formation and lane slowdown are likely during the next heavy load cycle.",
+        "recommendation": "Send Road Rover to print a temporary composite patch and stabilize the lane edge."
       },
+      "scenarioKey": "transit-corridor-fracture",
+      "visualType": "road_fracture",
+      "visualLabel": "Surface fracture",
+      "visualSummary": "Dark seam lines mark the spreading crack while the highlighted lane shows the repair envelope.",
+      "publicNote": "Autonomous lane repair is underway and transit impact is being kept local.",
+      "landmarkId": null,
+      "landmarkLabel": "Transit Corridor",
       "assignedAssetId": "asset-rover-07",
       "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 94%.",
-        "Road Rover 07 advanced repair mission to 74%.",
-        "Road Rover 07 advanced repair mission to 56%.",
-        "Road Rover 07 advanced repair mission to 43%.",
+        "Road Rover 07 advanced repair mission to 62%.",
+        "Road Rover 07 advanced repair mission to 41%.",
         "Road Rover 07 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
+        "AI classified event as roads with high urgency."
       ]
     },
     {
-      "id": "INC-4153",
-      "title": "Storm drain overflow risk rising",
+      "id": "INC-4015",
+      "title": "Flash flood near River Edge",
       "category": "flood",
-      "severity": "medium",
+      "severity": "high",
       "status": "resolved",
-      "detectedAt": "2026-03-15T16:39:57.029Z",
-      "location": "River Edge",
+      "detectedAt": "2026-03-15T17:29:58.588Z",
+      "location": "River Edge retention basin",
       "coordinate": [
-        77.59352,
-        12.97278
+        77.59358,
+        12.97282
       ],
       "sensorId": "P-330",
       "targetType": "pipe",
       "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
+      "summary": "Storm-drain sonar reports a rapid inflow surge near the retention basin and river-adjacent drain spine.",
       "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
+        "confidence": 0.84,
+        "predictedImpact": "Localized curb flooding could affect river-edge access roads within 10 minutes.",
+        "recommendation": "Dispatch AirSweep for pressure diversion, inspect the drain spine, and route runoff away from housing."
       },
+      "scenarioKey": "flash-flood-river-edge",
+      "visualType": "flood_surge",
+      "visualLabel": "Flood spread",
+      "visualSummary": "A blue flood pocket shows where water is pooling, and the wave front traces where runoff is pushing next.",
+      "publicNote": "The city is diverting flow and protecting the river-edge block while drain pressure is reduced.",
+      "landmarkId": "b-river-housing",
+      "landmarkLabel": "River Edge",
       "assignedAssetId": "asset-drone-03",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
         "Aerial Drone 03 completed repair and safety verification.",
         "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 97%.",
-        "Aerial Drone 03 advanced repair mission to 80%.",
-        "Aerial Drone 03 advanced repair mission to 69%.",
-        "Aerial Drone 03 advanced repair mission to 57%.",
-        "Aerial Drone 03 advanced repair mission to 44%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4152",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:39:42.028Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 92%.",
-        "PipeBot 11 advanced repair mission to 80%.",
-        "PipeBot 11 advanced repair mission to 61%.",
-        "PipeBot 11 advanced repair mission to 42%.",
-        "PipeBot 11 advanced repair mission to 25%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4151",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:39:27.022Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 88%.",
-        "PipeBot 11 advanced repair mission to 70%.",
-        "PipeBot 11 advanced repair mission to 59%.",
-        "PipeBot 11 advanced repair mission to 41%.",
-        "PipeBot 11 advanced repair mission to 31%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4150",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:39:17.020Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 88%.",
-        "AirSweep Unit 02 advanced repair mission to 67%.",
-        "AirSweep Unit 02 advanced repair mission to 49%.",
-        "AirSweep Unit 02 advanced repair mission to 39%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4149",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "open",
-      "detectedAt": "2026-03-15T16:39:07.018Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": null,
-      "worklog": [
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4148",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "open",
-      "detectedAt": "2026-03-15T16:38:52.014Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": null,
-      "worklog": [
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4147",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:38:32.011Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 96%.",
-        "Aerial Drone 03 advanced repair mission to 80%.",
-        "Aerial Drone 03 advanced repair mission to 63%.",
-        "Aerial Drone 03 advanced repair mission to 51%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4146",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:38:27.009Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 89%.",
-        "PipeBot 11 advanced repair mission to 78%.",
-        "PipeBot 11 advanced repair mission to 64%.",
-        "PipeBot 11 advanced repair mission to 53%.",
-        "PipeBot 11 advanced repair mission to 38%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4145",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:38:07.005Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 95%.",
-        "Aerial Drone 03 advanced repair mission to 79%.",
-        "Aerial Drone 03 advanced repair mission to 69%.",
-        "Aerial Drone 03 advanced repair mission to 58%.",
-        "Aerial Drone 03 advanced repair mission to 42%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4144",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:38:02.005Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 92%.",
-        "Road Rover 07 advanced repair mission to 75%.",
-        "Road Rover 07 advanced repair mission to 64%.",
-        "Road Rover 07 advanced repair mission to 43%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4143",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:37:47.004Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 90%.",
-        "AirSweep Unit 02 advanced repair mission to 80%.",
-        "AirSweep Unit 02 advanced repair mission to 68%.",
-        "AirSweep Unit 02 advanced repair mission to 50%.",
-        "AirSweep Unit 02 advanced repair mission to 37%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4142",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:37:37.003Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 91%.",
-        "AirSweep Unit 02 advanced repair mission to 77%.",
-        "AirSweep Unit 02 advanced repair mission to 66%.",
-        "AirSweep Unit 02 advanced repair mission to 51%.",
-        "AirSweep Unit 02 advanced repair mission to 33%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4141",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:37:32.002Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 85%.",
-        "AirSweep Unit 02 advanced repair mission to 74%.",
-        "AirSweep Unit 02 advanced repair mission to 64%.",
-        "AirSweep Unit 02 advanced repair mission to 44%.",
-        "AirSweep Unit 02 advanced repair mission to 27%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4140",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:37:17.000Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 86%.",
-        "Aerial Drone 03 advanced repair mission to 76%.",
-        "Aerial Drone 03 advanced repair mission to 57%.",
-        "Aerial Drone 03 advanced repair mission to 38%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4139",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:36:26.990Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 93%.",
-        "Road Rover 07 advanced repair mission to 79%.",
-        "Road Rover 07 advanced repair mission to 69%.",
-        "Road Rover 07 advanced repair mission to 59%.",
-        "Road Rover 07 advanced repair mission to 46%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4138",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:36:11.986Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 86%.",
-        "PipeBot 11 advanced repair mission to 67%.",
-        "PipeBot 11 advanced repair mission to 53%.",
-        "PipeBot 11 advanced repair mission to 38%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4137",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:35:46.979Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 98%.",
-        "Road Rover 07 advanced repair mission to 79%.",
-        "Road Rover 07 advanced repair mission to 59%.",
-        "Road Rover 07 advanced repair mission to 47%.",
-        "Road Rover 07 advanced repair mission to 27%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4136",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:35:41.979Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 92%.",
-        "AirSweep Unit 02 advanced repair mission to 74%.",
-        "AirSweep Unit 02 advanced repair mission to 53%.",
-        "AirSweep Unit 02 advanced repair mission to 42%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4135",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:35:36.977Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 87%.",
-        "Aerial Drone 03 advanced repair mission to 66%.",
-        "Aerial Drone 03 advanced repair mission to 53%.",
+        "Aerial Drone 03 advanced repair mission to 89%.",
+        "Aerial Drone 03 advanced repair mission to 70%.",
+        "Aerial Drone 03 advanced repair mission to 56%.",
         "Aerial Drone 03 advanced repair mission to 41%.",
         "Aerial Drone 03 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
+        "AI classified event as flood with high urgency."
       ]
     },
     {
-      "id": "INC-4134",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:35:06.966Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 88%.",
-        "Aerial Drone 03 advanced repair mission to 70%.",
-        "Aerial Drone 03 advanced repair mission to 54%.",
-        "Aerial Drone 03 advanced repair mission to 33%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4133",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:34:56.963Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 82%.",
-        "Aerial Drone 03 advanced repair mission to 69%.",
-        "Aerial Drone 03 advanced repair mission to 53%.",
-        "Aerial Drone 03 advanced repair mission to 43%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4132",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:34:46.962Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 94%.",
-        "AirSweep Unit 02 advanced repair mission to 78%.",
-        "AirSweep Unit 02 advanced repair mission to 64%.",
-        "AirSweep Unit 02 advanced repair mission to 49%.",
-        "AirSweep Unit 02 advanced repair mission to 31%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4131",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:34:36.959Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 88%.",
-        "AirSweep Unit 02 advanced repair mission to 70%.",
-        "AirSweep Unit 02 advanced repair mission to 58%.",
-        "AirSweep Unit 02 advanced repair mission to 46%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4130",
-      "title": "Water leak prediction triggered",
+      "id": "INC-4014",
+      "title": "Burst main under Peninsula Public School",
       "category": "water",
-      "severity": "high",
+      "severity": "critical",
       "status": "resolved",
-      "detectedAt": "2026-03-15T16:34:06.951Z",
-      "location": "Sector 12 Main",
+      "detectedAt": "2026-03-15T17:28:53.577Z",
+      "location": "Peninsula Public School / Sector 12 Main",
       "coordinate": [
-        77.59384,
-        12.97086
+        77.59382,
+        12.97088
       ],
       "sensorId": "W-204",
       "targetType": "pipe",
       "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
+      "summary": "Pressure mesh and subsurface acoustic sensors indicate a fast-rising rupture directly below the school approach.",
       "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
+        "confidence": 0.93,
+        "predictedImpact": "Water loss and lane washout risk could disrupt the school frontage within 12 minutes.",
+        "recommendation": "Dispatch PipeBot, isolate the branch valve, and hold a school perimeter until pressure stabilizes."
       },
+      "scenarioKey": "burst-main-school",
+      "visualType": "water_burst",
+      "visualLabel": "Pressure bloom",
+      "visualSummary": "A blue pressure bloom and spray spokes show where the underground main is breaking beneath the school frontage.",
+      "publicNote": "The city has placed the school frontage into protective response mode while the main is isolated.",
+      "landmarkId": "b-public-school",
+      "landmarkLabel": "Peninsula Public School",
       "assignedAssetId": "asset-pipebot-11",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
         "PipeBot 11 completed repair and safety verification.",
         "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 96%.",
-        "PipeBot 11 advanced repair mission to 77%.",
-        "PipeBot 11 advanced repair mission to 61%.",
-        "PipeBot 11 advanced repair mission to 47%.",
+        "PipeBot 11 advanced repair mission to 91%.",
+        "PipeBot 11 advanced repair mission to 74%.",
+        "PipeBot 11 advanced repair mission to 63%.",
+        "PipeBot 11 advanced repair mission to 53%.",
+        "PipeBot 11 advanced repair mission to 34%.",
+        "PipeBot 11 dispatched by AI orchestrator.",
+        "Edge anomaly streamed into the digital twin.",
+        "AI classified event as water with critical urgency."
+      ]
+    },
+    {
+      "id": "INC-4013",
+      "title": "Burst main under Peninsula Public School",
+      "category": "water",
+      "severity": "critical",
+      "status": "resolved",
+      "detectedAt": "2026-03-15T17:28:33.573Z",
+      "location": "Peninsula Public School / Sector 12 Main",
+      "coordinate": [
+        77.59382,
+        12.97088
+      ],
+      "sensorId": "W-204",
+      "targetType": "pipe",
+      "targetId": "pipe-sector-12",
+      "summary": "Pressure mesh and subsurface acoustic sensors indicate a fast-rising rupture directly below the school approach.",
+      "aiAssessment": {
+        "confidence": 0.93,
+        "predictedImpact": "Water loss and lane washout risk could disrupt the school frontage within 12 minutes.",
+        "recommendation": "Dispatch PipeBot, isolate the branch valve, and hold a school perimeter until pressure stabilizes."
+      },
+      "scenarioKey": "burst-main-school",
+      "visualType": "water_burst",
+      "visualLabel": "Pressure bloom",
+      "visualSummary": "A blue pressure bloom and spray spokes show where the underground main is breaking beneath the school frontage.",
+      "publicNote": "The city has placed the school frontage into protective response mode while the main is isolated.",
+      "landmarkId": "b-public-school",
+      "landmarkLabel": "Peninsula Public School",
+      "assignedAssetId": "asset-pipebot-11",
+      "worklog": [
+        "Verification mesh confirms the affected system returned to safe baseline.",
+        "PipeBot 11 completed repair and safety verification.",
+        "PipeBot 11 completed autonomous repair.",
+        "PipeBot 11 advanced repair mission to 87%.",
+        "PipeBot 11 advanced repair mission to 73%.",
+        "PipeBot 11 advanced repair mission to 55%.",
         "PipeBot 11 advanced repair mission to 35%.",
         "PipeBot 11 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
+        "AI classified event as water with critical urgency."
       ]
     },
     {
-      "id": "INC-4129",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:33:56.948Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 95%.",
-        "Road Rover 07 advanced repair mission to 79%.",
-        "Road Rover 07 advanced repair mission to 62%.",
-        "Road Rover 07 advanced repair mission to 41%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4128",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:33:31.942Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 99%.",
-        "Aerial Drone 03 advanced repair mission to 87%.",
-        "Aerial Drone 03 advanced repair mission to 70%.",
-        "Aerial Drone 03 advanced repair mission to 59%.",
-        "Aerial Drone 03 advanced repair mission to 46%.",
-        "Aerial Drone 03 advanced repair mission to 27%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4127",
-      "title": "Water leak prediction triggered",
+      "id": "INC-4012",
+      "title": "Burst main under Peninsula Public School",
       "category": "water",
-      "severity": "high",
+      "severity": "critical",
       "status": "resolved",
-      "detectedAt": "2026-03-15T16:33:01.935Z",
-      "location": "Sector 12 Main",
+      "detectedAt": "2026-03-15T17:28:18.570Z",
+      "location": "Peninsula Public School / Sector 12 Main",
       "coordinate": [
-        77.59384,
-        12.97086
+        77.59382,
+        12.97088
       ],
       "sensorId": "W-204",
       "targetType": "pipe",
       "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
+      "summary": "Pressure mesh and subsurface acoustic sensors indicate a fast-rising rupture directly below the school approach.",
       "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
+        "confidence": 0.93,
+        "predictedImpact": "Water loss and lane washout risk could disrupt the school frontage within 12 minutes.",
+        "recommendation": "Dispatch PipeBot, isolate the branch valve, and hold a school perimeter until pressure stabilizes."
       },
+      "scenarioKey": "burst-main-school",
+      "visualType": "water_burst",
+      "visualLabel": "Pressure bloom",
+      "visualSummary": "A blue pressure bloom and spray spokes show where the underground main is breaking beneath the school frontage.",
+      "publicNote": "The city has placed the school frontage into protective response mode while the main is isolated.",
+      "landmarkId": "b-public-school",
+      "landmarkLabel": "Peninsula Public School",
       "assignedAssetId": "asset-pipebot-11",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
         "PipeBot 11 completed repair and safety verification.",
         "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 92%.",
-        "PipeBot 11 advanced repair mission to 81%.",
-        "PipeBot 11 advanced repair mission to 65%.",
-        "PipeBot 11 advanced repair mission to 45%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4126",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:32:30.732Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 98%.",
-        "Road Rover 07 advanced repair mission to 81%.",
-        "Road Rover 07 advanced repair mission to 60%.",
-        "Road Rover 07 advanced repair mission to 42%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4125",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:32:05.727Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 95%.",
-        "PipeBot 11 advanced repair mission to 78%.",
-        "PipeBot 11 advanced repair mission to 58%.",
-        "PipeBot 11 advanced repair mission to 40%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4124",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:31:55.726Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 89%.",
-        "Road Rover 07 advanced repair mission to 69%.",
-        "Road Rover 07 advanced repair mission to 59%.",
-        "Road Rover 07 advanced repair mission to 48%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4123",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:31:35.723Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 98%.",
-        "Road Rover 07 advanced repair mission to 85%.",
-        "Road Rover 07 advanced repair mission to 72%.",
-        "Road Rover 07 advanced repair mission to 59%.",
-        "Road Rover 07 advanced repair mission to 41%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4122",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:31:05.718Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 98%.",
-        "PipeBot 11 advanced repair mission to 79%.",
-        "PipeBot 11 advanced repair mission to 65%.",
-        "PipeBot 11 advanced repair mission to 44%.",
-        "PipeBot 11 advanced repair mission to 31%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4121",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:30:50.716Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 94%.",
-        "Road Rover 07 advanced repair mission to 80%.",
-        "Road Rover 07 advanced repair mission to 59%.",
-        "Road Rover 07 advanced repair mission to 49%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4120",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:30:25.711Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 95%.",
-        "Road Rover 07 advanced repair mission to 83%.",
-        "Road Rover 07 advanced repair mission to 70%.",
-        "Road Rover 07 advanced repair mission to 57%.",
-        "Road Rover 07 advanced repair mission to 47%.",
-        "Road Rover 07 advanced repair mission to 26%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4119",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:30:10.709Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 84%.",
-        "PipeBot 11 advanced repair mission to 70%.",
-        "PipeBot 11 advanced repair mission to 59%.",
-        "PipeBot 11 advanced repair mission to 41%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4118",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:30:00.709Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 96%.",
-        "Road Rover 07 advanced repair mission to 77%.",
-        "Road Rover 07 advanced repair mission to 64%.",
-        "Road Rover 07 advanced repair mission to 51%.",
-        "Road Rover 07 advanced repair mission to 37%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4117",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:29:50.706Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 90%.",
-        "AirSweep Unit 02 advanced repair mission to 80%.",
-        "AirSweep Unit 02 advanced repair mission to 69%.",
-        "AirSweep Unit 02 advanced repair mission to 48%.",
-        "AirSweep Unit 02 advanced repair mission to 30%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4116",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:29:45.704Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 88%.",
-        "PipeBot 11 advanced repair mission to 75%.",
-        "PipeBot 11 advanced repair mission to 54%.",
+        "PipeBot 11 advanced repair mission to 93%.",
+        "PipeBot 11 advanced repair mission to 74%.",
+        "PipeBot 11 advanced repair mission to 57%.",
         "PipeBot 11 advanced repair mission to 36%.",
         "PipeBot 11 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
+        "AI classified event as water with critical urgency."
       ]
     },
     {
-      "id": "INC-4115",
-      "title": "Storm drain overflow risk rising",
+      "id": "INC-4011",
+      "title": "Flash flood near River Edge",
       "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:29:40.704Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 95%.",
-        "Aerial Drone 03 advanced repair mission to 80%.",
-        "Aerial Drone 03 advanced repair mission to 62%.",
-        "Aerial Drone 03 advanced repair mission to 50%.",
-        "Aerial Drone 03 advanced repair mission to 32%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4114",
-      "title": "Water leak prediction triggered",
-      "category": "water",
       "severity": "high",
       "status": "resolved",
-      "detectedAt": "2026-03-15T16:29:35.704Z",
-      "location": "Sector 12 Main",
+      "detectedAt": "2026-03-15T17:27:43.565Z",
+      "location": "River Edge retention basin",
       "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 99%.",
-        "PipeBot 11 advanced repair mission to 78%.",
-        "PipeBot 11 advanced repair mission to 60%.",
-        "PipeBot 11 advanced repair mission to 41%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4113",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:29:25.701Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 98%.",
-        "Road Rover 07 advanced repair mission to 77%.",
-        "Road Rover 07 advanced repair mission to 62%.",
-        "Road Rover 07 advanced repair mission to 46%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4112",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T16:29:10.700Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 99%.",
-        "Road Rover 07 advanced repair mission to 80%.",
-        "Road Rover 07 advanced repair mission to 63%.",
-        "Road Rover 07 advanced repair mission to 44%.",
-        "Road Rover 07 advanced repair mission to 29%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4111",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T14:12:22.547Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
+        77.59358,
+        12.97282
       ],
       "sensorId": "P-330",
       "targetType": "pipe",
       "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
+      "summary": "Storm-drain sonar reports a rapid inflow surge near the retention basin and river-adjacent drain spine.",
       "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
+        "confidence": 0.84,
+        "predictedImpact": "Localized curb flooding could affect river-edge access roads within 10 minutes.",
+        "recommendation": "Dispatch AirSweep for pressure diversion, inspect the drain spine, and route runoff away from housing."
       },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 97%.",
-        "AirSweep Unit 02 advanced repair mission to 85%.",
-        "AirSweep Unit 02 advanced repair mission to 68%.",
-        "AirSweep Unit 02 advanced repair mission to 58%.",
-        "AirSweep Unit 02 advanced repair mission to 38%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4110",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T13:37:52.961Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 83%.",
-        "Aerial Drone 03 advanced repair mission to 65%.",
-        "Aerial Drone 03 advanced repair mission to 45%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4109",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T13:22:13.123Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 95%.",
-        "AirSweep Unit 02 advanced repair mission to 84%.",
-        "AirSweep Unit 02 advanced repair mission to 67%.",
-        "AirSweep Unit 02 advanced repair mission to 57%.",
-        "AirSweep Unit 02 advanced repair mission to 47%.",
-        "AirSweep Unit 02 advanced repair mission to 32%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4108",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T13:22:08.121Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 89%.",
-        "Road Rover 07 advanced repair mission to 68%.",
-        "Road Rover 07 advanced repair mission to 48%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4107",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T12:53:48.527Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 84%.",
-        "Aerial Drone 03 advanced repair mission to 72%.",
-        "Aerial Drone 03 advanced repair mission to 60%.",
-        "Aerial Drone 03 advanced repair mission to 42%.",
-        "Aerial Drone 03 advanced repair mission to 30%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4106",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T12:36:24.746Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 94%.",
-        "Road Rover 07 advanced repair mission to 77%.",
-        "Road Rover 07 advanced repair mission to 60%.",
-        "Road Rover 07 advanced repair mission to 41%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4105",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T12:21:08.933Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 96%.",
-        "PipeBot 11 advanced repair mission to 81%.",
-        "PipeBot 11 advanced repair mission to 62%.",
-        "PipeBot 11 advanced repair mission to 52%.",
-        "PipeBot 11 advanced repair mission to 33%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4104",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T12:11:04.120Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
+      "scenarioKey": "flash-flood-river-edge",
+      "visualType": "flood_surge",
+      "visualLabel": "Flood spread",
+      "visualSummary": "A blue flood pocket shows where water is pooling, and the wave front traces where runoff is pushing next.",
+      "publicNote": "The city is diverting flow and protecting the river-edge block while drain pressure is reduced.",
+      "landmarkId": "b-river-housing",
+      "landmarkLabel": "River Edge",
       "assignedAssetId": "asset-airsweep-02",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
         "AirSweep Unit 02 completed repair and safety verification.",
         "AirSweep Unit 02 completed autonomous repair.",
         "AirSweep Unit 02 advanced repair mission to 98%.",
-        "AirSweep Unit 02 advanced repair mission to 85%.",
-        "AirSweep Unit 02 advanced repair mission to 75%.",
-        "AirSweep Unit 02 advanced repair mission to 60%.",
-        "AirSweep Unit 02 advanced repair mission to 47%.",
-        "AirSweep Unit 02 advanced repair mission to 26%.",
+        "AirSweep Unit 02 advanced repair mission to 88%.",
+        "AirSweep Unit 02 advanced repair mission to 71%.",
+        "AirSweep Unit 02 advanced repair mission to 58%.",
+        "AirSweep Unit 02 advanced repair mission to 46%.",
         "AirSweep Unit 02 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
+        "AI classified event as flood with high urgency."
       ]
     },
     {
-      "id": "INC-4103",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T11:37:06.572Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 84%.",
-        "Aerial Drone 03 advanced repair mission to 74%.",
-        "Aerial Drone 03 advanced repair mission to 61%.",
-        "Aerial Drone 03 advanced repair mission to 43%.",
-        "Aerial Drone 03 advanced repair mission to 30%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4102",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:24:06.067Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 99%.",
-        "Road Rover 07 advanced repair mission to 81%.",
-        "Road Rover 07 advanced repair mission to 66%.",
-        "Road Rover 07 advanced repair mission to 52%.",
-        "Road Rover 07 advanced repair mission to 42%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4101",
-      "title": "Water leak prediction triggered",
+      "id": "INC-4010",
+      "title": "Burst main under Peninsula Public School",
       "category": "water",
-      "severity": "high",
+      "severity": "critical",
       "status": "resolved",
-      "detectedAt": "2026-03-15T09:24:01.071Z",
-      "location": "Sector 12 Main",
+      "detectedAt": "2026-03-15T17:27:13.560Z",
+      "location": "Peninsula Public School / Sector 12 Main",
       "coordinate": [
-        77.59384,
-        12.97086
+        77.59382,
+        12.97088
       ],
       "sensorId": "W-204",
       "targetType": "pipe",
       "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
+      "summary": "Pressure mesh and subsurface acoustic sensors indicate a fast-rising rupture directly below the school approach.",
       "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
+        "confidence": 0.93,
+        "predictedImpact": "Water loss and lane washout risk could disrupt the school frontage within 12 minutes.",
+        "recommendation": "Dispatch PipeBot, isolate the branch valve, and hold a school perimeter until pressure stabilizes."
       },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 95%.",
-        "PipeBot 11 advanced repair mission to 79%.",
-        "PipeBot 11 advanced repair mission to 59%.",
-        "PipeBot 11 advanced repair mission to 43%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4100",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:19:04.293Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 93%.",
-        "Aerial Drone 03 advanced repair mission to 79%.",
-        "Aerial Drone 03 advanced repair mission to 65%.",
-        "Aerial Drone 03 advanced repair mission to 50%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4099",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:18:19.287Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 93%.",
-        "AirSweep Unit 02 advanced repair mission to 76%.",
-        "AirSweep Unit 02 advanced repair mission to 59%.",
-        "AirSweep Unit 02 advanced repair mission to 43%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4098",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:18:04.283Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 97%.",
-        "Aerial Drone 03 advanced repair mission to 77%.",
-        "Aerial Drone 03 advanced repair mission to 66%.",
-        "Aerial Drone 03 advanced repair mission to 46%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4097",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:17:54.282Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 91%.",
-        "Road Rover 07 advanced repair mission to 75%.",
-        "Road Rover 07 advanced repair mission to 55%.",
-        "Road Rover 07 advanced repair mission to 35%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4096",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:17:09.275Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 97%.",
-        "PipeBot 11 advanced repair mission to 80%.",
-        "PipeBot 11 advanced repair mission to 59%.",
-        "PipeBot 11 advanced repair mission to 43%.",
-        "PipeBot 11 advanced repair mission to 30%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4095",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:16:49.272Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 86%.",
-        "Aerial Drone 03 advanced repair mission to 66%.",
-        "Aerial Drone 03 advanced repair mission to 52%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4094",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:16:19.267Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
-      "assignedAssetId": "asset-pipebot-11",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "PipeBot 11 completed repair and safety verification.",
-        "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 92%.",
-        "PipeBot 11 advanced repair mission to 75%.",
-        "PipeBot 11 advanced repair mission to 63%.",
-        "PipeBot 11 advanced repair mission to 45%.",
-        "PipeBot 11 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4093",
-      "title": "Water leak prediction triggered",
-      "category": "water",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:16:09.265Z",
-      "location": "Sector 12 Main",
-      "coordinate": [
-        77.59384,
-        12.97086
-      ],
-      "sensorId": "W-204",
-      "targetType": "pipe",
-      "targetId": "pipe-sector-12",
-      "summary": "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      "aiAssessment": {
-        "confidence": 0.89,
-        "predictedImpact": "Water loss could affect two residential blocks within 20 minutes.",
-        "recommendation": "Dispatch PipeBot and isolate branch valve."
-      },
+      "scenarioKey": "burst-main-school",
+      "visualType": "water_burst",
+      "visualLabel": "Pressure bloom",
+      "visualSummary": "A blue pressure bloom and spray spokes show where the underground main is breaking beneath the school frontage.",
+      "publicNote": "The city has placed the school frontage into protective response mode while the main is isolated.",
+      "landmarkId": "b-public-school",
+      "landmarkLabel": "Peninsula Public School",
       "assignedAssetId": "asset-pipebot-11",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
@@ -2478,1132 +490,813 @@
         "PipeBot 11 completed autonomous repair.",
         "PipeBot 11 advanced repair mission to 88%.",
         "PipeBot 11 advanced repair mission to 72%.",
-        "PipeBot 11 advanced repair mission to 52%.",
-        "PipeBot 11 advanced repair mission to 34%.",
+        "PipeBot 11 advanced repair mission to 54%.",
+        "PipeBot 11 advanced repair mission to 44%.",
+        "PipeBot 11 advanced repair mission to 25%.",
         "PipeBot 11 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
-        "AI classified event as water with high urgency."
+        "AI classified event as water with critical urgency."
       ]
     },
     {
-      "id": "INC-4092",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
+      "id": "INC-4009",
+      "title": "Burst main under Peninsula Public School",
+      "category": "water",
+      "severity": "critical",
       "status": "resolved",
-      "detectedAt": "2026-03-15T09:15:54.428Z",
-      "location": "Transit Corridor",
+      "detectedAt": "2026-03-15T17:26:58.556Z",
+      "location": "Peninsula Public School / Sector 12 Main",
       "coordinate": [
-        77.59518,
-        12.97064
+        77.59382,
+        12.97088
       ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
+      "sensorId": "W-204",
+      "targetType": "pipe",
+      "targetId": "pipe-sector-12",
+      "summary": "Pressure mesh and subsurface acoustic sensors indicate a fast-rising rupture directly below the school approach.",
       "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
+        "confidence": 0.93,
+        "predictedImpact": "Water loss and lane washout risk could disrupt the school frontage within 12 minutes.",
+        "recommendation": "Dispatch PipeBot, isolate the branch valve, and hold a school perimeter until pressure stabilizes."
       },
-      "assignedAssetId": "asset-rover-07",
+      "scenarioKey": "burst-main-school",
+      "visualType": "water_burst",
+      "visualLabel": "Pressure bloom",
+      "visualSummary": "A blue pressure bloom and spray spokes show where the underground main is breaking beneath the school frontage.",
+      "publicNote": "The city has placed the school frontage into protective response mode while the main is isolated.",
+      "landmarkId": "b-public-school",
+      "landmarkLabel": "Peninsula Public School",
+      "assignedAssetId": "asset-pipebot-11",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 82%.",
-        "Road Rover 07 advanced repair mission to 70%.",
-        "Road Rover 07 advanced repair mission to 56%.",
-        "Road Rover 07 advanced repair mission to 43%.",
-        "Road Rover 07 advanced repair mission to 29%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
+        "PipeBot 11 completed repair and safety verification.",
+        "PipeBot 11 completed autonomous repair.",
+        "PipeBot 11 advanced repair mission to 93%.",
+        "PipeBot 11 advanced repair mission to 72%.",
+        "PipeBot 11 advanced repair mission to 62%.",
+        "PipeBot 11 advanced repair mission to 44%.",
+        "PipeBot 11 advanced repair mission to 32%.",
+        "PipeBot 11 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
+        "AI classified event as water with critical urgency."
       ]
     },
     {
-      "id": "INC-4091",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
+      "id": "INC-4008",
+      "title": "Flash flood near River Edge",
+      "category": "flood",
       "severity": "high",
       "status": "resolved",
-      "detectedAt": "2026-03-15T09:15:44.426Z",
-      "location": "Industrial Belt",
+      "detectedAt": "2026-03-15T17:26:23.550Z",
+      "location": "River Edge retention basin",
       "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 98%.",
-        "Aerial Drone 03 advanced repair mission to 84%.",
-        "Aerial Drone 03 advanced repair mission to 74%.",
-        "Aerial Drone 03 advanced repair mission to 58%.",
-        "Aerial Drone 03 advanced repair mission to 45%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4090",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:15:39.425Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
+        77.59358,
+        12.97282
       ],
       "sensorId": "P-330",
       "targetType": "pipe",
       "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
+      "summary": "Storm-drain sonar reports a rapid inflow surge near the retention basin and river-adjacent drain spine.",
       "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
+        "confidence": 0.84,
+        "predictedImpact": "Localized curb flooding could affect river-edge access roads within 10 minutes.",
+        "recommendation": "Dispatch AirSweep for pressure diversion, inspect the drain spine, and route runoff away from housing."
       },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 89%.",
-        "AirSweep Unit 02 advanced repair mission to 69%.",
-        "AirSweep Unit 02 advanced repair mission to 48%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4089",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:15:24.420Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 90%.",
-        "AirSweep Unit 02 advanced repair mission to 71%.",
-        "AirSweep Unit 02 advanced repair mission to 52%.",
-        "AirSweep Unit 02 advanced repair mission to 42%.",
-        "AirSweep Unit 02 advanced repair mission to 29%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4088",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:15:19.419Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 95%.",
-        "Road Rover 07 advanced repair mission to 84%.",
-        "Road Rover 07 advanced repair mission to 72%.",
-        "Road Rover 07 advanced repair mission to 59%.",
-        "Road Rover 07 advanced repair mission to 45%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4087",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:14:54.414Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
+      "scenarioKey": "flash-flood-river-edge",
+      "visualType": "flood_surge",
+      "visualLabel": "Flood spread",
+      "visualSummary": "A blue flood pocket shows where water is pooling, and the wave front traces where runoff is pushing next.",
+      "publicNote": "The city is diverting flow and protecting the river-edge block while drain pressure is reduced.",
+      "landmarkId": "b-river-housing",
+      "landmarkLabel": "River Edge",
       "assignedAssetId": "asset-drone-03",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
         "Aerial Drone 03 completed repair and safety verification.",
         "Aerial Drone 03 completed autonomous repair.",
         "Aerial Drone 03 advanced repair mission to 92%.",
-        "Aerial Drone 03 advanced repair mission to 74%.",
-        "Aerial Drone 03 advanced repair mission to 54%.",
-        "Aerial Drone 03 advanced repair mission to 40%.",
+        "Aerial Drone 03 advanced repair mission to 71%.",
+        "Aerial Drone 03 advanced repair mission to 58%.",
+        "Aerial Drone 03 advanced repair mission to 37%.",
         "Aerial Drone 03 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
+        "AI classified event as flood with high urgency."
       ]
     },
     {
-      "id": "INC-4086",
-      "title": "Industrial pollution plume detected",
+      "id": "INC-4007",
+      "title": "Flash flood near River Edge",
+      "category": "flood",
+      "severity": "high",
+      "status": "resolved",
+      "detectedAt": "2026-03-15T17:26:18.548Z",
+      "location": "River Edge retention basin",
+      "coordinate": [
+        77.59358,
+        12.97282
+      ],
+      "sensorId": "P-330",
+      "targetType": "pipe",
+      "targetId": "pipe-river-drain",
+      "summary": "Storm-drain sonar reports a rapid inflow surge near the retention basin and river-adjacent drain spine.",
+      "aiAssessment": {
+        "confidence": 0.84,
+        "predictedImpact": "Localized curb flooding could affect river-edge access roads within 10 minutes.",
+        "recommendation": "Dispatch AirSweep for pressure diversion, inspect the drain spine, and route runoff away from housing."
+      },
+      "scenarioKey": "flash-flood-river-edge",
+      "visualType": "flood_surge",
+      "visualLabel": "Flood spread",
+      "visualSummary": "A blue flood pocket shows where water is pooling, and the wave front traces where runoff is pushing next.",
+      "publicNote": "The city is diverting flow and protecting the river-edge block while drain pressure is reduced.",
+      "landmarkId": "b-river-housing",
+      "landmarkLabel": "River Edge",
+      "assignedAssetId": "asset-drone-03",
+      "worklog": [
+        "Verification mesh confirms the affected system returned to safe baseline.",
+        "Aerial Drone 03 completed repair and safety verification.",
+        "Aerial Drone 03 completed autonomous repair.",
+        "Aerial Drone 03 advanced repair mission to 91%.",
+        "Aerial Drone 03 advanced repair mission to 76%.",
+        "Aerial Drone 03 advanced repair mission to 65%.",
+        "Aerial Drone 03 advanced repair mission to 44%.",
+        "Aerial Drone 03 advanced repair mission to 30%.",
+        "Aerial Drone 03 dispatched by AI orchestrator.",
+        "Edge anomaly streamed into the digital twin.",
+        "AI classified event as flood with high urgency."
+      ]
+    },
+    {
+      "id": "INC-4006",
+      "title": "Pollution spike near East Stack Factory",
       "category": "air",
       "severity": "high",
       "status": "resolved",
-      "detectedAt": "2026-03-15T09:14:49.414Z",
-      "location": "Industrial Belt",
+      "detectedAt": "2026-03-15T17:25:53.543Z",
+      "location": "East Stack Factory / Industrial Belt",
       "coordinate": [
-        77.59578,
-        12.97268
+        77.59552,
+        12.97266
       ],
       "sensorId": "A-076",
       "targetType": "zone",
       "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
+      "summary": "Air quality towers and stack telemetry caught a sudden particulate jump near the primary factory exhaust path.",
       "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
+        "confidence": 0.88,
+        "predictedImpact": "AQI could exceed 145 in nearby blocks within 15 minutes if the source is not neutralized.",
+        "recommendation": "Launch the mapping drone, verify the source, and position AirSweep downwind for neutralization."
       },
+      "scenarioKey": "pollution-spike-factory",
+      "visualType": "pollution_plume",
+      "visualLabel": "Drift plume",
+      "visualSummary": "A translucent plume shows where particulates are drifting, while floating sample points show where the drone is validating air quality.",
+      "publicNote": "The system is containing the emissions spike and tracking downwind spread in real time.",
+      "landmarkId": "b-east-factory",
+      "landmarkLabel": "East Stack Factory",
       "assignedAssetId": "asset-airsweep-02",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
         "AirSweep Unit 02 completed repair and safety verification.",
         "AirSweep Unit 02 completed autonomous repair.",
         "AirSweep Unit 02 advanced repair mission to 95%.",
-        "AirSweep Unit 02 advanced repair mission to 81%.",
+        "AirSweep Unit 02 advanced repair mission to 83%.",
         "AirSweep Unit 02 advanced repair mission to 67%.",
-        "AirSweep Unit 02 advanced repair mission to 51%.",
-        "AirSweep Unit 02 advanced repair mission to 30%.",
+        "AirSweep Unit 02 advanced repair mission to 56%.",
+        "AirSweep Unit 02 advanced repair mission to 35%.",
         "AirSweep Unit 02 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
         "AI classified event as air with high urgency."
       ]
     },
     {
-      "id": "INC-4085",
-      "title": "Road fracture progression detected",
+      "id": "INC-4005",
+      "title": "Transit corridor fracture detected",
       "category": "roads",
-      "severity": "medium",
+      "severity": "high",
       "status": "resolved",
-      "detectedAt": "2026-03-15T09:14:44.413Z",
+      "detectedAt": "2026-03-15T17:25:23.537Z",
       "location": "Transit Corridor",
       "coordinate": [
-        77.59518,
+        77.59514,
         12.97064
       ],
       "sensorId": "R-118",
       "targetType": "road",
       "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
+      "summary": "Surface vision and axle-vibration nodes found a crack line spreading across the main transit lane.",
       "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
+        "confidence": 0.86,
+        "predictedImpact": "Pothole formation and lane slowdown are likely during the next heavy load cycle.",
+        "recommendation": "Send Road Rover to print a temporary composite patch and stabilize the lane edge."
       },
+      "scenarioKey": "transit-corridor-fracture",
+      "visualType": "road_fracture",
+      "visualLabel": "Surface fracture",
+      "visualSummary": "Dark seam lines mark the spreading crack while the highlighted lane shows the repair envelope.",
+      "publicNote": "Autonomous lane repair is underway and transit impact is being kept local.",
+      "landmarkId": null,
+      "landmarkLabel": "Transit Corridor",
       "assignedAssetId": "asset-rover-07",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
         "Road Rover 07 completed repair and safety verification.",
         "Road Rover 07 completed autonomous repair.",
         "Road Rover 07 advanced repair mission to 94%.",
-        "Road Rover 07 advanced repair mission to 79%.",
-        "Road Rover 07 advanced repair mission to 64%.",
-        "Road Rover 07 advanced repair mission to 50%.",
-        "Road Rover 07 advanced repair mission to 32%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4084",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:14:19.408Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 88%.",
-        "Aerial Drone 03 advanced repair mission to 71%.",
-        "Aerial Drone 03 advanced repair mission to 60%.",
-        "Aerial Drone 03 advanced repair mission to 44%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4083",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:14:04.405Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 90%.",
-        "AirSweep Unit 02 advanced repair mission to 75%.",
-        "AirSweep Unit 02 advanced repair mission to 54%.",
-        "AirSweep Unit 02 advanced repair mission to 44%.",
-        "AirSweep Unit 02 advanced repair mission to 26%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4082",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:13:54.403Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 96%.",
-        "Road Rover 07 advanced repair mission to 83%.",
-        "Road Rover 07 advanced repair mission to 62%.",
-        "Road Rover 07 advanced repair mission to 42%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4081",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:13:39.401Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 89%.",
-        "Aerial Drone 03 advanced repair mission to 73%.",
-        "Aerial Drone 03 advanced repair mission to 61%.",
-        "Aerial Drone 03 advanced repair mission to 40%.",
-        "Aerial Drone 03 advanced repair mission to 27%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4080",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:13:29.399Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 84%.",
-        "AirSweep Unit 02 advanced repair mission to 73%.",
-        "AirSweep Unit 02 advanced repair mission to 60%.",
-        "AirSweep Unit 02 advanced repair mission to 46%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4079",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:13:19.396Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 91%.",
-        "Road Rover 07 advanced repair mission to 75%.",
-        "Road Rover 07 advanced repair mission to 56%.",
-        "Road Rover 07 advanced repair mission to 42%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4078",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:13:14.395Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 97%.",
-        "Aerial Drone 03 advanced repair mission to 81%.",
-        "Aerial Drone 03 advanced repair mission to 63%.",
-        "Aerial Drone 03 advanced repair mission to 51%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4077",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:12:39.391Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 98%.",
-        "Road Rover 07 advanced repair mission to 87%.",
-        "Road Rover 07 advanced repair mission to 67%.",
-        "Road Rover 07 advanced repair mission to 56%.",
-        "Road Rover 07 advanced repair mission to 36%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4076",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:12:19.387Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-airsweep-02",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "AirSweep Unit 02 completed repair and safety verification.",
-        "AirSweep Unit 02 completed autonomous repair.",
-        "AirSweep Unit 02 advanced repair mission to 80%.",
-        "AirSweep Unit 02 advanced repair mission to 69%.",
-        "AirSweep Unit 02 advanced repair mission to 51%.",
-        "AirSweep Unit 02 advanced repair mission to 32%.",
-        "AirSweep Unit 02 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4075",
-      "title": "Industrial pollution plume detected",
-      "category": "air",
-      "severity": "high",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:11:49.379Z",
-      "location": "Industrial Belt",
-      "coordinate": [
-        77.59578,
-        12.97268
-      ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      "aiAssessment": {
-        "confidence": 0.82,
-        "predictedImpact": "AQI may cross 140 within the next 15 minutes.",
-        "recommendation": "Send aerial drone for source scan and AirSweep for local neutralization."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 90%.",
-        "Aerial Drone 03 advanced repair mission to 69%.",
-        "Aerial Drone 03 advanced repair mission to 51%.",
-        "Aerial Drone 03 advanced repair mission to 39%.",
-        "Aerial Drone 03 advanced repair mission to 25%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as air with high urgency."
-      ]
-    },
-    {
-      "id": "INC-4074",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:11:24.375Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 93%.",
-        "Road Rover 07 advanced repair mission to 75%.",
-        "Road Rover 07 advanced repair mission to 56%.",
-        "Road Rover 07 advanced repair mission to 39%.",
-        "Road Rover 07 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4073",
-      "title": "Road fracture progression detected",
-      "category": "roads",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:11:14.374Z",
-      "location": "Transit Corridor",
-      "coordinate": [
-        77.59518,
-        12.97064
-      ],
-      "sensorId": "R-118",
-      "targetType": "road",
-      "targetId": "road-transit-corridor",
-      "summary": "Road vision and vibration nodes found active cracking on a transit lane.",
-      "aiAssessment": {
-        "confidence": 0.85,
-        "predictedImpact": "Pothole formation likely during the next peak load cycle.",
-        "recommendation": "Send Road Rover for composite fill and lane stabilization."
-      },
-      "assignedAssetId": "asset-rover-07",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Road Rover 07 completed repair and safety verification.",
-        "Road Rover 07 completed autonomous repair.",
-        "Road Rover 07 advanced repair mission to 91%.",
         "Road Rover 07 advanced repair mission to 77%.",
-        "Road Rover 07 advanced repair mission to 65%.",
-        "Road Rover 07 advanced repair mission to 50%.",
-        "Road Rover 07 advanced repair mission to 35%.",
+        "Road Rover 07 advanced repair mission to 61%.",
+        "Road Rover 07 advanced repair mission to 43%.",
         "Road Rover 07 dispatched by AI orchestrator.",
         "Edge anomaly streamed into the digital twin.",
-        "AI classified event as roads with medium urgency."
+        "AI classified event as roads with high urgency."
       ]
     },
     {
-      "id": "INC-4072",
-      "title": "Storm drain overflow risk rising",
-      "category": "flood",
-      "severity": "medium",
-      "status": "resolved",
-      "detectedAt": "2026-03-15T09:11:04.372Z",
-      "location": "River Edge",
-      "coordinate": [
-        77.59352,
-        12.97278
-      ],
-      "sensorId": "P-330",
-      "targetType": "pipe",
-      "targetId": "pipe-river-drain",
-      "summary": "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      "aiAssessment": {
-        "confidence": 0.8,
-        "predictedImpact": "Localized curb flooding likely if intervention is delayed.",
-        "recommendation": "Inspect drain spine and deploy diversion bot."
-      },
-      "assignedAssetId": "asset-drone-03",
-      "worklog": [
-        "Verification mesh confirms the affected system returned to safe baseline.",
-        "Aerial Drone 03 completed repair and safety verification.",
-        "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 97%.",
-        "Aerial Drone 03 advanced repair mission to 79%.",
-        "Aerial Drone 03 advanced repair mission to 61%.",
-        "Aerial Drone 03 advanced repair mission to 40%.",
-        "Aerial Drone 03 dispatched by AI orchestrator.",
-        "Edge anomaly streamed into the digital twin.",
-        "AI classified event as flood with medium urgency."
-      ]
-    },
-    {
-      "id": "INC-4000",
-      "title": "Micro leak near Sector 12 main",
+      "id": "INC-4004",
+      "title": "Burst main under Peninsula Public School",
       "category": "water",
-      "severity": "high",
+      "severity": "critical",
       "status": "resolved",
-      "detectedAt": "2026-03-15T00:00:00.000Z",
-      "location": "Sector 12 Main",
+      "detectedAt": "2026-03-15T17:25:03.534Z",
+      "location": "Peninsula Public School / Sector 12 Main",
       "coordinate": [
-        77.59384,
-        12.97086
+        77.59382,
+        12.97088
       ],
       "sensorId": "W-204",
       "targetType": "pipe",
       "targetId": "pipe-sector-12",
-      "summary": "Pressure differential indicates underground crack propagation below the civic utility branch.",
+      "summary": "Pressure mesh and subsurface acoustic sensors indicate a fast-rising rupture directly below the school approach.",
       "aiAssessment": {
-        "confidence": 0.87,
-        "predictedImpact": "Water loss of 1400L in 20 minutes if untreated.",
-        "recommendation": "Dispatch PipeBot with emergency clamp route and isolate branch valve."
+        "confidence": 0.93,
+        "predictedImpact": "Water loss and lane washout risk could disrupt the school frontage within 12 minutes.",
+        "recommendation": "Dispatch PipeBot, isolate the branch valve, and hold a school perimeter until pressure stabilizes."
       },
+      "scenarioKey": "burst-main-school",
+      "visualType": "water_burst",
+      "visualLabel": "Pressure bloom",
+      "visualSummary": "A blue pressure bloom and spray spokes show where the underground main is breaking beneath the school frontage.",
+      "publicNote": "The city has placed the school frontage into protective response mode while the main is isolated.",
+      "landmarkId": "b-public-school",
+      "landmarkLabel": "Peninsula Public School",
       "assignedAssetId": "asset-pipebot-11",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
         "PipeBot 11 completed repair and safety verification.",
         "PipeBot 11 completed autonomous repair.",
-        "PipeBot 11 advanced repair mission to 88%.",
-        "PipeBot 11 advanced repair mission to 76%.",
-        "PipeBot 11 is sealing the pressure breach.",
-        "AI classified event as a high priority pipe failure.",
-        "Pressure anomaly crossed the leak threshold."
+        "PipeBot 11 advanced repair mission to 94%.",
+        "PipeBot 11 advanced repair mission to 74%.",
+        "PipeBot 11 advanced repair mission to 56%.",
+        "PipeBot 11 advanced repair mission to 36%.",
+        "PipeBot 11 dispatched by AI orchestrator.",
+        "Edge anomaly streamed into the digital twin.",
+        "AI classified event as water with critical urgency."
       ]
     },
     {
-      "id": "INC-3999",
-      "title": "Localized emissions plume above industrial belt",
-      "category": "air",
+      "id": "INC-4003",
+      "title": "Flash flood near River Edge",
+      "category": "flood",
       "severity": "high",
       "status": "resolved",
-      "detectedAt": "2026-03-15T00:00:00.000Z",
-      "location": "Industrial Belt",
+      "detectedAt": "2026-03-15T17:24:53.532Z",
+      "location": "River Edge retention basin",
       "coordinate": [
-        77.59578,
-        12.97268
+        77.59358,
+        12.97282
       ],
-      "sensorId": "A-076",
-      "targetType": "zone",
-      "targetId": "zone-east",
-      "summary": "A short-lived pollutant plume was detected near the east industrial stack with rising particulate density.",
+      "sensorId": "P-330",
+      "targetType": "pipe",
+      "targetId": "pipe-river-drain",
+      "summary": "Storm-drain sonar reports a rapid inflow surge near the retention basin and river-adjacent drain spine.",
       "aiAssessment": {
-        "confidence": 0.83,
-        "predictedImpact": "AQI likely to exceed 140 for nearby blocks within 12 minutes.",
-        "recommendation": "Launch aerial drone for plume mapping and prepare AirSweep for neutralization."
+        "confidence": 0.84,
+        "predictedImpact": "Localized curb flooding could affect river-edge access roads within 10 minutes.",
+        "recommendation": "Dispatch AirSweep for pressure diversion, inspect the drain spine, and route runoff away from housing."
       },
+      "scenarioKey": "flash-flood-river-edge",
+      "visualType": "flood_surge",
+      "visualLabel": "Flood spread",
+      "visualSummary": "A blue flood pocket shows where water is pooling, and the wave front traces where runoff is pushing next.",
+      "publicNote": "The city is diverting flow and protecting the river-edge block while drain pressure is reduced.",
+      "landmarkId": "b-river-housing",
+      "landmarkLabel": "River Edge",
       "assignedAssetId": "asset-drone-03",
       "worklog": [
         "Verification mesh confirms the affected system returned to safe baseline.",
         "Aerial Drone 03 completed repair and safety verification.",
         "Aerial Drone 03 completed autonomous repair.",
-        "Aerial Drone 03 advanced repair mission to 96%.",
-        "Aerial Drone 03 advanced repair mission to 77%.",
-        "Aerial Drone 03 advanced repair mission to 62%.",
-        "Aerial Drone 03 is mapping the emissions source.",
-        "Source triangulation narrowed the plume to the industrial belt.",
+        "Aerial Drone 03 advanced repair mission to 94%.",
+        "Aerial Drone 03 advanced repair mission to 76%.",
+        "Aerial Drone 03 advanced repair mission to 61%.",
+        "Aerial Drone 03 advanced repair mission to 43%.",
+        "Aerial Drone 03 dispatched by AI orchestrator.",
+        "Edge anomaly streamed into the digital twin.",
+        "AI classified event as flood with high urgency."
+      ]
+    },
+    {
+      "id": "INC-4002",
+      "title": "Pollution spike near East Stack Factory",
+      "category": "air",
+      "severity": "high",
+      "status": "resolved",
+      "detectedAt": "2026-03-15T17:24:38.528Z",
+      "location": "East Stack Factory / Industrial Belt",
+      "coordinate": [
+        77.59552,
+        12.97266
+      ],
+      "sensorId": "A-076",
+      "targetType": "zone",
+      "targetId": "zone-east",
+      "summary": "Air quality towers and stack telemetry caught a sudden particulate jump near the primary factory exhaust path.",
+      "aiAssessment": {
+        "confidence": 0.88,
+        "predictedImpact": "AQI could exceed 145 in nearby blocks within 15 minutes if the source is not neutralized.",
+        "recommendation": "Launch the mapping drone, verify the source, and position AirSweep downwind for neutralization."
+      },
+      "scenarioKey": "pollution-spike-factory",
+      "visualType": "pollution_plume",
+      "visualLabel": "Drift plume",
+      "visualSummary": "A translucent plume shows where particulates are drifting, while floating sample points show where the drone is validating air quality.",
+      "publicNote": "The system is containing the emissions spike and tracking downwind spread in real time.",
+      "landmarkId": "b-east-factory",
+      "landmarkLabel": "East Stack Factory",
+      "assignedAssetId": "asset-airsweep-02",
+      "worklog": [
+        "Verification mesh confirms the affected system returned to safe baseline.",
+        "AirSweep Unit 02 completed repair and safety verification.",
+        "AirSweep Unit 02 completed autonomous repair.",
+        "AirSweep Unit 02 advanced repair mission to 97%.",
+        "AirSweep Unit 02 advanced repair mission to 76%.",
+        "AirSweep Unit 02 advanced repair mission to 66%.",
+        "AirSweep Unit 02 advanced repair mission to 48%.",
+        "AirSweep Unit 02 dispatched by AI orchestrator.",
+        "Edge anomaly streamed into the digital twin.",
+        "AI classified event as air with high urgency."
+      ]
+    },
+    {
+      "id": "INC-4001",
+      "title": "Flash flood near River Edge",
+      "category": "flood",
+      "severity": "high",
+      "status": "resolved",
+      "detectedAt": "2026-03-15T17:24:18.524Z",
+      "location": "River Edge retention basin",
+      "coordinate": [
+        77.59358,
+        12.97282
+      ],
+      "sensorId": "P-330",
+      "targetType": "pipe",
+      "targetId": "pipe-river-drain",
+      "summary": "Storm-drain sonar reports a rapid inflow surge near the retention basin and river-adjacent drain spine.",
+      "aiAssessment": {
+        "confidence": 0.84,
+        "predictedImpact": "Localized curb flooding could affect river-edge access roads within 10 minutes.",
+        "recommendation": "Dispatch AirSweep for pressure diversion, inspect the drain spine, and route runoff away from housing."
+      },
+      "scenarioKey": "flash-flood-river-edge",
+      "visualType": "flood_surge",
+      "visualLabel": "Flood spread",
+      "visualSummary": "A blue flood pocket shows where water is pooling, and the wave front traces where runoff is pushing next.",
+      "publicNote": "The city is diverting flow and protecting the river-edge block while drain pressure is reduced.",
+      "landmarkId": "b-river-housing",
+      "landmarkLabel": "River Edge",
+      "assignedAssetId": "asset-drone-03",
+      "worklog": [
+        "Verification mesh confirms the affected system returned to safe baseline.",
+        "Aerial Drone 03 completed repair and safety verification.",
+        "Aerial Drone 03 completed autonomous repair.",
+        "Aerial Drone 03 advanced repair mission to 95%.",
+        "Aerial Drone 03 advanced repair mission to 80%.",
+        "Aerial Drone 03 advanced repair mission to 64%.",
+        "Aerial Drone 03 advanced repair mission to 52%.",
+        "Aerial Drone 03 advanced repair mission to 41%.",
+        "Aerial Drone 03 dispatched by AI orchestrator.",
+        "Edge anomaly streamed into the digital twin.",
+        "AI classified event as flood with high urgency."
+      ]
+    },
+    {
+      "id": "INC-4000",
+      "title": "Burst main under Peninsula Public School",
+      "category": "water",
+      "severity": "high",
+      "status": "resolved",
+      "detectedAt": "2026-03-15T00:00:00.000Z",
+      "location": "Peninsula Public School / Sector 12 Main",
+      "coordinate": [
+        77.59382,
+        12.97088
+      ],
+      "sensorId": "W-204",
+      "targetType": "pipe",
+      "targetId": "pipe-sector-12",
+      "summary": "Pressure mesh and subsurface acoustic sensors indicate a fast-rising rupture directly below the school approach.",
+      "aiAssessment": {
+        "confidence": 0.93,
+        "predictedImpact": "Water loss and lane washout risk could disrupt the school frontage within 12 minutes.",
+        "recommendation": "Dispatch PipeBot, isolate the branch valve, and hold a school perimeter until pressure stabilizes."
+      },
+      "scenarioKey": "burst-main-school",
+      "visualType": "water_burst",
+      "visualLabel": "Pressure bloom",
+      "visualSummary": "A blue pressure bloom and spray spokes show where the underground main is breaking beneath the school frontage.",
+      "publicNote": "The city has placed the school frontage into protective response mode while the main is isolated.",
+      "landmarkId": "b-public-school",
+      "landmarkLabel": "Peninsula Public School",
+      "assignedAssetId": "asset-pipebot-11",
+      "worklog": [
+        "Verification mesh confirms the affected system returned to safe baseline.",
+        "PipeBot 11 completed repair and safety verification.",
+        "PipeBot 11 completed autonomous repair.",
+        "PipeBot 11 advanced repair mission to 92%.",
+        "PipeBot 11 advanced repair mission to 73%.",
+        "PipeBot 11 advanced repair mission to 58%.",
+        "PipeBot 11 advanced repair mission to 47%.",
+        "PipeBot 11 advanced repair mission to 34%.",
+        "PipeBot 11 is sealing the school-frontage breach.",
+        "AI classified event as a critical burst-main risk under the school approach.",
+        "Pressure anomaly crossed the rupture threshold."
+      ]
+    },
+    {
+      "id": "INC-3999",
+      "title": "Pollution spike near East Stack Factory",
+      "category": "air",
+      "severity": "high",
+      "status": "resolved",
+      "detectedAt": "2026-03-15T00:00:00.000Z",
+      "location": "East Stack Factory / Industrial Belt",
+      "coordinate": [
+        77.59552,
+        12.97266
+      ],
+      "sensorId": "A-076",
+      "targetType": "zone",
+      "targetId": "zone-east",
+      "summary": "Air quality towers and stack telemetry caught a sudden particulate jump near the primary factory exhaust path.",
+      "aiAssessment": {
+        "confidence": 0.88,
+        "predictedImpact": "AQI could exceed 145 in nearby blocks within 15 minutes if the source is not neutralized.",
+        "recommendation": "Launch the mapping drone, verify the source, and position AirSweep downwind for neutralization."
+      },
+      "scenarioKey": "pollution-spike-factory",
+      "visualType": "pollution_plume",
+      "visualLabel": "Drift plume",
+      "visualSummary": "A translucent plume shows where particulates are drifting, while floating sample points show where the drone is validating air quality.",
+      "publicNote": "The system is containing the emissions spike and tracking downwind spread in real time.",
+      "landmarkId": "b-east-factory",
+      "landmarkLabel": "East Stack Factory",
+      "assignedAssetId": "asset-drone-03",
+      "worklog": [
+        "Verification mesh confirms the affected system returned to safe baseline.",
+        "Aerial Drone 03 completed repair and safety verification.",
+        "Aerial Drone 03 completed autonomous repair.",
+        "Aerial Drone 03 advanced repair mission to 98%.",
+        "Aerial Drone 03 advanced repair mission to 86%.",
+        "Aerial Drone 03 advanced repair mission to 66%.",
+        "Aerial Drone 03 advanced repair mission to 56%.",
+        "Aerial Drone 03 advanced repair mission to 35%.",
+        "Aerial Drone 03 is mapping the emissions source over the factory stack.",
+        "Source triangulation narrowed the plume to the east industrial stack.",
         "Air quality tower flagged a hazardous rise."
       ]
     }
   ],
   "missions": [
     {
-      "id": "MIS-9252",
-      "incidentId": "INC-4155",
-      "assetId": "asset-pipebot-11",
+      "id": "MIS-9117",
+      "incidentId": "INC-4017",
+      "assetId": "asset-airsweep-02",
       "assetType": "robot",
-      "objective": "Dispatch PipeBot and isolate branch valve.",
-      "etaMinutes": 1,
-      "progress": 93,
+      "objective": "Dispatch AirSweep for pressure diversion, inspect the drain spine, and route runoff away from housing.",
+      "etaMinutes": 6,
+      "progress": 45,
       "status": "active",
       "route": [
         [
-          77.59366,
-          12.97068
+          77.59594,
+          12.97262
         ],
         [
-          77.59384,
-          12.97068
+          77.59358,
+          12.97262
         ],
         [
-          77.59384,
-          12.97086
+          77.59358,
+          12.97282
+        ]
+      ]
+    },
+    {
+      "id": "MIS-9116",
+      "incidentId": "INC-4016",
+      "assetId": "asset-rover-07",
+      "assetType": "robot",
+      "objective": "Send Road Rover to print a temporary composite patch and stabilize the lane edge.",
+      "etaMinutes": 4,
+      "progress": 62,
+      "status": "active",
+      "route": [
+        [
+          77.59468,
+          12.97052
+        ],
+        [
+          77.59514,
+          12.97052
+        ],
+        [
+          77.59514,
+          12.97064
         ]
       ]
     }
   ],
   "timeline": [
     {
-      "id": "EVT-504",
-      "time": "2026-03-15T16:41:27.049Z",
-      "kind": "repair",
-      "message": "INC-4157 resolved by AirSweep Unit 02.",
-      "incidentId": "INC-4157"
-    },
-    {
-      "id": "EVT-503",
-      "time": "2026-03-15T16:41:07.044Z",
-      "kind": "incident",
-      "message": "INC-4158 detected near Sector 12 Main.",
-      "incidentId": "INC-4158"
-    },
-    {
-      "id": "EVT-502",
-      "time": "2026-03-15T16:41:07.044Z",
-      "kind": "repair",
-      "message": "INC-4156 resolved by Aerial Drone 03.",
-      "incidentId": "INC-4156"
-    },
-    {
-      "id": "EVT-501",
-      "time": "2026-03-15T16:41:02.043Z",
+      "id": "EVT-56",
+      "time": "2026-03-15T17:30:28.596Z",
       "kind": "dispatch",
-      "message": "PipeBot 11 launched toward INC-4155.",
-      "incidentId": "INC-4155"
+      "message": "AirSweep Unit 02 launched toward INC-4017.",
+      "incidentId": "INC-4017"
     },
     {
-      "id": "EVT-500",
-      "time": "2026-03-15T16:40:52.040Z",
-      "kind": "dispatch",
-      "message": "AirSweep Unit 02 launched toward INC-4157.",
-      "incidentId": "INC-4157"
-    },
-    {
-      "id": "EVT-499",
-      "time": "2026-03-15T16:40:52.040Z",
+      "id": "EVT-55",
+      "time": "2026-03-15T17:30:28.596Z",
       "kind": "incident",
-      "message": "INC-4157 detected near River Edge.",
-      "incidentId": "INC-4157"
+      "message": "INC-4017 detected near River Edge retention basin.",
+      "incidentId": "INC-4017"
     },
     {
-      "id": "EVT-498",
-      "time": "2026-03-15T16:40:47.039Z",
+      "id": "EVT-54",
+      "time": "2026-03-15T17:30:23.595Z",
+      "kind": "dispatch",
+      "message": "Road Rover 07 launched toward INC-4016.",
+      "incidentId": "INC-4016"
+    },
+    {
+      "id": "EVT-53",
+      "time": "2026-03-15T17:30:23.595Z",
+      "kind": "incident",
+      "message": "INC-4016 detected near Transit Corridor.",
+      "incidentId": "INC-4016"
+    },
+    {
+      "id": "EVT-52",
+      "time": "2026-03-15T17:30:23.595Z",
       "kind": "repair",
-      "message": "INC-4154 resolved by Road Rover 07.",
-      "incidentId": "INC-4154"
+      "message": "INC-4015 resolved by Aerial Drone 03.",
+      "incidentId": "INC-4015"
     },
     {
-      "id": "EVT-497",
-      "time": "2026-03-15T16:40:42.038Z",
-      "kind": "dispatch",
-      "message": "Aerial Drone 03 launched toward INC-4156.",
-      "incidentId": "INC-4156"
-    },
-    {
-      "id": "EVT-496",
-      "time": "2026-03-15T16:40:42.038Z",
-      "kind": "incident",
-      "message": "INC-4156 detected near River Edge.",
-      "incidentId": "INC-4156"
-    },
-    {
-      "id": "EVT-495",
-      "time": "2026-03-15T16:40:32.036Z",
-      "kind": "incident",
-      "message": "INC-4155 detected near Sector 12 Main.",
-      "incidentId": "INC-4155"
-    },
-    {
-      "id": "EVT-494",
-      "time": "2026-03-15T16:40:27.034Z",
+      "id": "EVT-51",
+      "time": "2026-03-15T17:30:18.593Z",
       "kind": "repair",
-      "message": "INC-4153 resolved by Aerial Drone 03.",
-      "incidentId": "INC-4153"
+      "message": "INC-4013 resolved by PipeBot 11.",
+      "incidentId": "INC-4013"
     },
     {
-      "id": "EVT-493",
-      "time": "2026-03-15T16:40:27.034Z",
+      "id": "EVT-50",
+      "time": "2026-03-15T17:29:58.588Z",
+      "kind": "dispatch",
+      "message": "Aerial Drone 03 launched toward INC-4015.",
+      "incidentId": "INC-4015"
+    },
+    {
+      "id": "EVT-49",
+      "time": "2026-03-15T17:29:58.588Z",
+      "kind": "incident",
+      "message": "INC-4015 detected near River Edge retention basin.",
+      "incidentId": "INC-4015"
+    },
+    {
+      "id": "EVT-48",
+      "time": "2026-03-15T17:29:53.588Z",
+      "kind": "dispatch",
+      "message": "PipeBot 11 launched toward INC-4013.",
+      "incidentId": "INC-4013"
+    },
+    {
+      "id": "EVT-47",
+      "time": "2026-03-15T17:29:53.587Z",
       "kind": "repair",
-      "message": "INC-4152 resolved by PipeBot 11.",
-      "incidentId": "INC-4152"
+      "message": "INC-4014 resolved by PipeBot 11.",
+      "incidentId": "INC-4014"
     },
     {
-      "id": "EVT-492",
-      "time": "2026-03-15T16:40:22.034Z",
+      "id": "EVT-46",
+      "time": "2026-03-15T17:29:23.583Z",
       "kind": "dispatch",
-      "message": "Road Rover 07 launched toward INC-4154.",
-      "incidentId": "INC-4154"
+      "message": "PipeBot 11 launched toward INC-4014.",
+      "incidentId": "INC-4014"
     },
     {
-      "id": "EVT-491",
-      "time": "2026-03-15T16:40:22.034Z",
+      "id": "EVT-45",
+      "time": "2026-03-15T17:28:53.577Z",
       "kind": "incident",
-      "message": "INC-4154 detected near Transit Corridor.",
-      "incidentId": "INC-4154"
+      "message": "INC-4014 detected near Peninsula Public School / Sector 12 Main.",
+      "incidentId": "INC-4014"
     },
     {
-      "id": "EVT-490",
-      "time": "2026-03-15T16:40:07.031Z",
+      "id": "EVT-44",
+      "time": "2026-03-15T17:28:53.577Z",
       "kind": "repair",
-      "message": "INC-4150 resolved by AirSweep Unit 02.",
-      "incidentId": "INC-4150"
+      "message": "INC-4012 resolved by PipeBot 11.",
+      "incidentId": "INC-4012"
     },
     {
-      "id": "EVT-489",
-      "time": "2026-03-15T16:39:57.029Z",
-      "kind": "dispatch",
-      "message": "PipeBot 11 launched toward INC-4152.",
-      "incidentId": "INC-4152"
-    },
-    {
-      "id": "EVT-488",
-      "time": "2026-03-15T16:39:57.029Z",
-      "kind": "dispatch",
-      "message": "Aerial Drone 03 launched toward INC-4153.",
-      "incidentId": "INC-4153"
-    },
-    {
-      "id": "EVT-487",
-      "time": "2026-03-15T16:39:57.029Z",
+      "id": "EVT-43",
+      "time": "2026-03-15T17:28:33.573Z",
       "kind": "incident",
-      "message": "INC-4153 detected near River Edge.",
-      "incidentId": "INC-4153"
+      "message": "INC-4013 detected near Peninsula Public School / Sector 12 Main.",
+      "incidentId": "INC-4013"
     },
     {
-      "id": "EVT-486",
-      "time": "2026-03-15T16:39:57.029Z",
+      "id": "EVT-42",
+      "time": "2026-03-15T17:28:28.572Z",
+      "kind": "dispatch",
+      "message": "PipeBot 11 launched toward INC-4012.",
+      "incidentId": "INC-4012"
+    },
+    {
+      "id": "EVT-41",
+      "time": "2026-03-15T17:28:28.572Z",
       "kind": "repair",
-      "message": "INC-4151 resolved by PipeBot 11.",
-      "incidentId": "INC-4151"
+      "message": "INC-4010 resolved by PipeBot 11.",
+      "incidentId": "INC-4010"
     },
     {
-      "id": "EVT-485",
-      "time": "2026-03-15T16:39:42.028Z",
-      "kind": "dispatch",
-      "message": "AirSweep Unit 02 launched toward INC-4150.",
-      "incidentId": "INC-4150"
-    },
-    {
-      "id": "EVT-484",
-      "time": "2026-03-15T16:39:42.028Z",
+      "id": "EVT-40",
+      "time": "2026-03-15T17:28:18.570Z",
       "kind": "incident",
-      "message": "INC-4152 detected near Sector 12 Main.",
-      "incidentId": "INC-4152"
+      "message": "INC-4012 detected near Peninsula Public School / Sector 12 Main.",
+      "incidentId": "INC-4012"
     },
     {
-      "id": "EVT-483",
-      "time": "2026-03-15T16:39:42.027Z",
+      "id": "EVT-39",
+      "time": "2026-03-15T17:28:13.569Z",
       "kind": "repair",
-      "message": "INC-4142 resolved by AirSweep Unit 02.",
-      "incidentId": "INC-4142"
+      "message": "INC-4011 resolved by AirSweep Unit 02.",
+      "incidentId": "INC-4011"
     },
     {
-      "id": "EVT-482",
-      "time": "2026-03-15T16:39:27.022Z",
+      "id": "EVT-38",
+      "time": "2026-03-15T17:27:58.567Z",
       "kind": "dispatch",
-      "message": "PipeBot 11 launched toward INC-4151.",
-      "incidentId": "INC-4151"
+      "message": "PipeBot 11 launched toward INC-4010.",
+      "incidentId": "INC-4010"
     },
     {
-      "id": "EVT-481",
-      "time": "2026-03-15T16:39:27.022Z",
-      "kind": "incident",
-      "message": "INC-4151 detected near Sector 12 Main.",
-      "incidentId": "INC-4151"
-    },
-    {
-      "id": "EVT-480",
-      "time": "2026-03-15T16:39:17.020Z",
-      "kind": "incident",
-      "message": "INC-4150 detected near River Edge.",
-      "incidentId": "INC-4150"
-    },
-    {
-      "id": "EVT-479",
-      "time": "2026-03-15T16:39:12.020Z",
+      "id": "EVT-37",
+      "time": "2026-03-15T17:27:43.565Z",
       "kind": "dispatch",
-      "message": "AirSweep Unit 02 launched toward INC-4142.",
-      "incidentId": "INC-4142"
+      "message": "AirSweep Unit 02 launched toward INC-4011.",
+      "incidentId": "INC-4011"
     },
     {
-      "id": "EVT-478",
-      "time": "2026-03-15T16:39:12.020Z",
+      "id": "EVT-36",
+      "time": "2026-03-15T17:27:43.565Z",
+      "kind": "incident",
+      "message": "INC-4011 detected near River Edge retention basin.",
+      "incidentId": "INC-4011"
+    },
+    {
+      "id": "EVT-35",
+      "time": "2026-03-15T17:27:28.561Z",
       "kind": "repair",
-      "message": "INC-4147 resolved by Aerial Drone 03.",
-      "incidentId": "INC-4147"
+      "message": "INC-4009 resolved by PipeBot 11.",
+      "incidentId": "INC-4009"
     },
     {
-      "id": "EVT-477",
-      "time": "2026-03-15T16:39:07.018Z",
+      "id": "EVT-34",
+      "time": "2026-03-15T17:27:13.560Z",
       "kind": "incident",
-      "message": "INC-4149 detected near Sector 12 Main.",
-      "incidentId": "INC-4149"
+      "message": "INC-4010 detected near Peninsula Public School / Sector 12 Main.",
+      "incidentId": "INC-4010"
     },
     {
-      "id": "EVT-476",
-      "time": "2026-03-15T16:38:57.015Z",
+      "id": "EVT-33",
+      "time": "2026-03-15T17:27:13.560Z",
       "kind": "repair",
-      "message": "INC-4146 resolved by PipeBot 11.",
-      "incidentId": "INC-4146"
+      "message": "INC-4008 resolved by Aerial Drone 03.",
+      "incidentId": "INC-4008"
     },
     {
-      "id": "EVT-475",
-      "time": "2026-03-15T16:38:52.014Z",
-      "kind": "incident",
-      "message": "INC-4148 detected near Sector 12 Main.",
-      "incidentId": "INC-4148"
-    },
-    {
-      "id": "EVT-474",
-      "time": "2026-03-15T16:38:47.014Z",
+      "id": "EVT-32",
+      "time": "2026-03-15T17:26:58.556Z",
       "kind": "dispatch",
-      "message": "Aerial Drone 03 launched toward INC-4147.",
-      "incidentId": "INC-4147"
+      "message": "PipeBot 11 launched toward INC-4009.",
+      "incidentId": "INC-4009"
     },
     {
-      "id": "EVT-473",
-      "time": "2026-03-15T16:38:47.014Z",
+      "id": "EVT-31",
+      "time": "2026-03-15T17:26:58.556Z",
+      "kind": "incident",
+      "message": "INC-4009 detected near Peninsula Public School / Sector 12 Main.",
+      "incidentId": "INC-4009"
+    },
+    {
+      "id": "EVT-30",
+      "time": "2026-03-15T17:26:48.555Z",
+      "kind": "dispatch",
+      "message": "Aerial Drone 03 launched toward INC-4008.",
+      "incidentId": "INC-4008"
+    },
+    {
+      "id": "EVT-29",
+      "time": "2026-03-15T17:26:48.555Z",
       "kind": "repair",
-      "message": "INC-4145 resolved by Aerial Drone 03.",
-      "incidentId": "INC-4145"
+      "message": "INC-4007 resolved by Aerial Drone 03.",
+      "incidentId": "INC-4007"
     },
     {
-      "id": "EVT-472",
-      "time": "2026-03-15T16:38:32.011Z",
+      "id": "EVT-28",
+      "time": "2026-03-15T17:26:23.550Z",
       "kind": "incident",
-      "message": "INC-4147 detected near River Edge.",
-      "incidentId": "INC-4147"
+      "message": "INC-4008 detected near River Edge retention basin.",
+      "incidentId": "INC-4008"
     },
     {
-      "id": "EVT-471",
-      "time": "2026-03-15T16:38:32.011Z",
+      "id": "EVT-27",
+      "time": "2026-03-15T17:26:23.550Z",
       "kind": "repair",
-      "message": "INC-4143 resolved by AirSweep Unit 02.",
-      "incidentId": "INC-4143"
+      "message": "INC-4006 resolved by AirSweep Unit 02.",
+      "incidentId": "INC-4006"
     },
     {
-      "id": "EVT-470",
-      "time": "2026-03-15T16:38:27.009Z",
+      "id": "EVT-26",
+      "time": "2026-03-15T17:26:18.548Z",
       "kind": "dispatch",
-      "message": "PipeBot 11 launched toward INC-4146.",
-      "incidentId": "INC-4146"
+      "message": "Aerial Drone 03 launched toward INC-4007.",
+      "incidentId": "INC-4007"
     },
     {
-      "id": "EVT-469",
-      "time": "2026-03-15T16:38:27.009Z",
+      "id": "EVT-25",
+      "time": "2026-03-15T17:26:18.548Z",
       "kind": "incident",
-      "message": "INC-4146 detected near Sector 12 Main.",
-      "incidentId": "INC-4146"
+      "message": "INC-4007 detected near River Edge retention basin.",
+      "incidentId": "INC-4007"
     },
     {
-      "id": "EVT-468",
-      "time": "2026-03-15T16:38:27.009Z",
+      "id": "EVT-24",
+      "time": "2026-03-15T17:25:53.543Z",
+      "kind": "dispatch",
+      "message": "AirSweep Unit 02 launched toward INC-4006.",
+      "incidentId": "INC-4006"
+    },
+    {
+      "id": "EVT-23",
+      "time": "2026-03-15T17:25:53.543Z",
+      "kind": "incident",
+      "message": "INC-4006 detected near East Stack Factory / Industrial Belt.",
+      "incidentId": "INC-4006"
+    },
+    {
+      "id": "EVT-22",
+      "time": "2026-03-15T17:25:48.543Z",
       "kind": "repair",
-      "message": "INC-4144 resolved by Road Rover 07.",
-      "incidentId": "INC-4144"
+      "message": "INC-4005 resolved by Road Rover 07.",
+      "incidentId": "INC-4005"
     },
     {
-      "id": "EVT-467",
-      "time": "2026-03-15T16:38:17.007Z",
+      "id": "EVT-21",
+      "time": "2026-03-15T17:25:28.538Z",
+      "kind": "repair",
+      "message": "INC-4004 resolved by PipeBot 11.",
+      "incidentId": "INC-4004"
+    },
+    {
+      "id": "EVT-20",
+      "time": "2026-03-15T17:25:23.537Z",
       "kind": "dispatch",
-      "message": "Aerial Drone 03 launched toward INC-4145.",
-      "incidentId": "INC-4145"
+      "message": "Road Rover 07 launched toward INC-4005.",
+      "incidentId": "INC-4005"
     },
     {
-      "id": "EVT-466",
-      "time": "2026-03-15T16:38:07.005Z",
+      "id": "EVT-19",
+      "time": "2026-03-15T17:25:23.537Z",
       "kind": "incident",
-      "message": "INC-4145 detected near Industrial Belt.",
-      "incidentId": "INC-4145"
+      "message": "INC-4005 detected near Transit Corridor.",
+      "incidentId": "INC-4005"
     },
     {
-      "id": "EVT-465",
-      "time": "2026-03-15T16:38:02.005Z",
+      "id": "EVT-18",
+      "time": "2026-03-15T17:25:18.536Z",
+      "kind": "repair",
+      "message": "INC-4003 resolved by Aerial Drone 03.",
+      "incidentId": "INC-4003"
+    },
+    {
+      "id": "EVT-17",
+      "time": "2026-03-15T17:25:03.534Z",
       "kind": "dispatch",
-      "message": "AirSweep Unit 02 launched toward INC-4143.",
-      "incidentId": "INC-4143"
+      "message": "PipeBot 11 launched toward INC-4004.",
+      "incidentId": "INC-4004"
     }
   ]
 }

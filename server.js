@@ -33,6 +33,202 @@ const mimeTypes = {
   ".json": "application/json; charset=utf-8"
 };
 
+const SCENARIO_PRESETS = {
+  "burst-main-school": {
+    key: "burst-main-school",
+    label: "Burst Main",
+    category: "water",
+    severity: "critical",
+    description: "An underground water main ruptures beneath the school frontage and threatens nearby blocks.",
+    hint: "Shows a pressurized water bloom, pipe stress, and the school safety buffer.",
+    title: "Burst main under Peninsula Public School",
+    summary: "Pressure mesh and subsurface acoustic sensors indicate a fast-rising rupture directly below the school approach.",
+    confidence: 0.93,
+    impact: "Water loss and lane washout risk could disrupt the school frontage within 12 minutes.",
+    recommendation: "Dispatch PipeBot, isolate the branch valve, and hold a school perimeter until pressure stabilizes.",
+    sensorId: "W-204",
+    targetType: "pipe",
+    targetId: "pipe-sector-12",
+    location: "Peninsula Public School / Sector 12 Main",
+    coordinate: districtLayout.anchors.scenarios["burst-main-school"],
+    landmarkId: "b-public-school",
+    landmarkLabel: "Peninsula Public School",
+    visualType: "water_burst",
+    visualLabel: "Pressure bloom",
+    visualSummary: "A blue pressure bloom and spray spokes show where the underground main is breaking beneath the school frontage.",
+    publicNote: "The city has placed the school frontage into protective response mode while the main is isolated."
+  },
+  "pollution-spike-factory": {
+    key: "pollution-spike-factory",
+    label: "Pollution Spike",
+    category: "air",
+    severity: "high",
+    description: "A fast-moving emissions spike forms near the factory stack and drifts across the industrial belt.",
+    hint: "Shows a directional plume, particulate sampling points, and the likely downwind impact area.",
+    title: "Pollution spike near East Stack Factory",
+    summary: "Air quality towers and stack telemetry caught a sudden particulate jump near the primary factory exhaust path.",
+    confidence: 0.88,
+    impact: "AQI could exceed 145 in nearby blocks within 15 minutes if the source is not neutralized.",
+    recommendation: "Launch the mapping drone, verify the source, and position AirSweep downwind for neutralization.",
+    sensorId: "A-076",
+    targetType: "zone",
+    targetId: "zone-east",
+    location: "East Stack Factory / Industrial Belt",
+    coordinate: districtLayout.anchors.scenarios["pollution-spike-factory"],
+    landmarkId: "b-east-factory",
+    landmarkLabel: "East Stack Factory",
+    visualType: "pollution_plume",
+    visualLabel: "Drift plume",
+    visualSummary: "A translucent plume shows where particulates are drifting, while floating sample points show where the drone is validating air quality.",
+    publicNote: "The system is containing the emissions spike and tracking downwind spread in real time."
+  },
+  "transit-corridor-fracture": {
+    key: "transit-corridor-fracture",
+    label: "Transit Fracture",
+    category: "roads",
+    severity: "high",
+    description: "Road vision units detect a widening fracture across the transit corridor surface.",
+    hint: "Shows fracture seams, the affected lane envelope, and the rover repair path.",
+    title: "Transit corridor fracture detected",
+    summary: "Surface vision and axle-vibration nodes found a crack line spreading across the main transit lane.",
+    confidence: 0.86,
+    impact: "Pothole formation and lane slowdown are likely during the next heavy load cycle.",
+    recommendation: "Send Road Rover to print a temporary composite patch and stabilize the lane edge.",
+    sensorId: "R-118",
+    targetType: "road",
+    targetId: "road-transit-corridor",
+    location: "Transit Corridor",
+    coordinate: districtLayout.anchors.scenarios["transit-corridor-fracture"],
+    landmarkId: null,
+    landmarkLabel: "Transit Corridor",
+    visualType: "road_fracture",
+    visualLabel: "Surface fracture",
+    visualSummary: "Dark seam lines mark the spreading crack while the highlighted lane shows the repair envelope.",
+    publicNote: "Autonomous lane repair is underway and transit impact is being kept local."
+  },
+  "flash-flood-river-edge": {
+    key: "flash-flood-river-edge",
+    label: "Flash Flood",
+    category: "flood",
+    severity: "high",
+    description: "Drain sonar catches a sudden surge near the river edge before curb flooding spreads inland.",
+    hint: "Shows the inundation pocket, flood front, and the storm-drain spine under pressure.",
+    title: "Flash flood near River Edge",
+    summary: "Storm-drain sonar reports a rapid inflow surge near the retention basin and river-adjacent drain spine.",
+    confidence: 0.84,
+    impact: "Localized curb flooding could affect river-edge access roads within 10 minutes.",
+    recommendation: "Dispatch AirSweep for pressure diversion, inspect the drain spine, and route runoff away from housing.",
+    sensorId: "P-330",
+    targetType: "pipe",
+    targetId: "pipe-river-drain",
+    location: "River Edge retention basin",
+    coordinate: districtLayout.anchors.scenarios["flash-flood-river-edge"],
+    landmarkId: "b-river-housing",
+    landmarkLabel: "River Edge",
+    visualType: "flood_surge",
+    visualLabel: "Flood spread",
+    visualSummary: "A blue flood pocket shows where water is pooling, and the wave front traces where runoff is pushing next.",
+    publicNote: "The city is diverting flow and protecting the river-edge block while drain pressure is reduced."
+  }
+};
+
+function nextCounter(items, prefix, fallback) {
+  const pattern = new RegExp(`^${prefix}-(\\d+)$`);
+  const max = (items || []).reduce((highest, item) => {
+    if (!item || typeof item.id !== "string") {
+      return highest;
+    }
+    const match = item.id.match(pattern);
+    return match ? Math.max(highest, Number(match[1])) : highest;
+  }, fallback - 1);
+  return Math.max(fallback, max + 1);
+}
+
+function offsetCoordinate(coordinate, lngOffset, latOffset) {
+  return [
+    Number((coordinate[0] + lngOffset).toFixed(6)),
+    Number((coordinate[1] + latOffset).toFixed(6))
+  ];
+}
+
+function polygonOverlay(id, coordinates, properties) {
+  return {
+    type: "Feature",
+    id,
+    properties: { id, ...properties },
+    geometry: {
+      type: "Polygon",
+      coordinates
+    }
+  };
+}
+
+function defaultVisualType(category) {
+  if (category === "water") {
+    return "water_burst";
+  }
+  if (category === "air") {
+    return "pollution_plume";
+  }
+  if (category === "flood") {
+    return "flood_surge";
+  }
+  return "road_fracture";
+}
+
+function defaultVisualLabel(category) {
+  if (category === "water") {
+    return "Pressure bloom";
+  }
+  if (category === "air") {
+    return "Drift plume";
+  }
+  if (category === "flood") {
+    return "Flood spread";
+  }
+  return "Surface fracture";
+}
+
+function defaultVisualSummary(category, location) {
+  if (category === "water") {
+    return `A burst footprint is rendered directly above the damaged main near ${location}.`;
+  }
+  if (category === "air") {
+    return `A moving plume shows how air quality degradation is spreading near ${location}.`;
+  }
+  if (category === "flood") {
+    return `A flood pocket shows where water is gathering and where runoff is pushing next near ${location}.`;
+  }
+  return `Fracture seams mark the road section under repair near ${location}.`;
+}
+
+function scenarioPresetList() {
+  return Object.values(SCENARIO_PRESETS).map((preset) => ({
+    key: preset.key,
+    label: preset.label,
+    category: preset.category,
+    severity: preset.severity,
+    description: preset.description,
+    hint: preset.hint,
+    visualLabel: preset.visualLabel,
+    landmarkLabel: preset.landmarkLabel
+  }));
+}
+
+function normalizeIncident(incident) {
+  if (!incident) {
+    return;
+  }
+
+  incident.scenarioKey = incident.scenarioKey || `custom-${incident.category}`;
+  incident.visualType = incident.visualType || defaultVisualType(incident.category);
+  incident.visualLabel = incident.visualLabel || defaultVisualLabel(incident.category);
+  incident.visualSummary = incident.visualSummary || defaultVisualSummary(incident.category, incident.location);
+  incident.publicNote = incident.publicNote || incident.aiAssessment.predictedImpact;
+  incident.landmarkId = incident.landmarkId || null;
+  incident.landmarkLabel = incident.landmarkLabel || incident.location;
+}
+
 function ensureDataFile() {
   if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, { recursive: true });
@@ -46,9 +242,10 @@ function ensureDataFile() {
 ensureDataFile();
 
 let state = readState();
-let eventCounter = state.timeline.length + 1;
-let incidentCounter = 4001;
-let missionCounter = 9101;
+let eventCounter = nextCounter(state.timeline, "EVT", (state.timeline || []).length + 1);
+let incidentCounter = nextCounter(state.incidents, "INC", 4001);
+let missionCounter = nextCounter(state.missions, "MIS", 9101);
+let simulationHoldUntil = 0;
 
 function readState() {
   return JSON.parse(fs.readFileSync(dataFile, "utf8"));
@@ -174,6 +371,10 @@ function resolveSensorForCategory(category) {
 }
 
 function reconcileState() {
+  for (const incident of state.incidents) {
+    normalizeIncident(incident);
+  }
+
   for (const sensor of state.sensors) {
     if (!sensor.position) {
       sensor.position = districtLayout.anchors.sensors[sensor.id];
@@ -224,6 +425,150 @@ function colorForSeverity(severity) {
     return "#ff8b4a";
   }
   return "#ffd65e";
+}
+
+function buildingColorForGroup(group) {
+  const palette = {
+    civic: "#8fa3b6",
+    health: "#9cb08a",
+    commercial: "#c69c77",
+    infrastructure: "#7fa1a0",
+    education: "#d2af66",
+    utility: "#7d97b1",
+    mobility: "#9b8bb8",
+    data: "#8a9ccc",
+    residential: "#b7c2a2",
+    industrial: "#8f867c"
+  };
+  return palette[group] || "#8ea2b5";
+}
+
+function zoneColorForType(zoneType) {
+  const palette = {
+    residential: "#d6e5df",
+    civic: "#ece1d1",
+    utility: "#dce7ed",
+    industrial: "#e7ddd6"
+  };
+  return palette[zoneType] || "#dde5ea";
+}
+
+function scenarioWaterFeatures(incident) {
+  const center = incident.coordinate;
+  const burstCenter = offsetCoordinate(center, 0, -0.00002);
+  const burst = polygonOverlay(`${incident.id}-water-burst`, circlePolygon(burstCenter, 0.00018, 0.00012), {
+    incidentId: incident.id,
+    color: "#35a6ff",
+    title: incident.title
+  });
+  const sprayOffsets = [
+    [0.00016, 0],
+    [0.00010, 0.00010],
+    [-0.00012, 0.00008],
+    [-0.00016, -0.00001],
+    [0.00008, -0.00010],
+    [-0.00004, -0.00011]
+  ];
+  const sprays = sprayOffsets.map((offset, index) => lineFeature(`${incident.id}-spray-${index}`, [
+    center,
+    offsetCoordinate(center, offset[0], offset[1])
+  ], {
+    incidentId: incident.id,
+    color: "#35a6ff",
+    title: `${incident.title} spray`
+  }));
+
+  return { burst, sprays };
+}
+
+function scenarioPollutionFeatures(incident) {
+  const center = incident.coordinate;
+  const plume = polygonOverlay(`${incident.id}-plume`, [[
+    offsetCoordinate(center, -0.00007, -0.00004),
+    offsetCoordinate(center, 0.00008, -0.00009),
+    offsetCoordinate(center, 0.00028, -0.00005),
+    offsetCoordinate(center, 0.00048, 0.00002),
+    offsetCoordinate(center, 0.00044, 0.00014),
+    offsetCoordinate(center, 0.00024, 0.00016),
+    offsetCoordinate(center, 0.00002, 0.00009),
+    offsetCoordinate(center, -0.00008, 0.00003),
+    offsetCoordinate(center, -0.00007, -0.00004)
+  ]], {
+    incidentId: incident.id,
+    color: "#6fa85f",
+    title: incident.title
+  });
+  const particles = [
+    [0.00006, 0.00002],
+    [0.00016, -0.00001],
+    [0.00024, 0.00005],
+    [0.00034, 0.00001],
+    [0.00042, 0.00008]
+  ].map((offset, index) => pointFeature(`${incident.id}-particle-${index}`, offsetCoordinate(center, offset[0], offset[1]), {
+    incidentId: incident.id,
+    color: "#5f8f44",
+    title: incident.title
+  }));
+
+  return { plume, particles };
+}
+
+function scenarioFloodFeatures(incident) {
+  const center = incident.coordinate;
+  const extent = polygonOverlay(`${incident.id}-flood`, [[
+    offsetCoordinate(center, -0.00042, -0.00003),
+    offsetCoordinate(center, 0.00028, -0.00006),
+    offsetCoordinate(center, 0.00036, 0.00009),
+    offsetCoordinate(center, 0.00010, 0.00022),
+    offsetCoordinate(center, -0.00028, 0.00018),
+    offsetCoordinate(center, -0.00046, 0.00008),
+    offsetCoordinate(center, -0.00042, -0.00003)
+  ]], {
+    incidentId: incident.id,
+    color: "#4b9dff",
+    title: incident.title
+  });
+  const front = lineFeature(`${incident.id}-flood-front`, [
+    offsetCoordinate(center, -0.00024, 0.00016),
+    offsetCoordinate(center, -0.00006, 0.00019),
+    offsetCoordinate(center, 0.00010, 0.00020),
+    offsetCoordinate(center, 0.00028, 0.00017)
+  ], {
+    incidentId: incident.id,
+    color: "#4b9dff",
+    title: `${incident.title} flood front`
+  });
+
+  return { extent, front };
+}
+
+function scenarioRoadFeatures(incident) {
+  const center = incident.coordinate;
+  const fractures = [
+    [[-0.00016, -0.00003], [-0.00004, 0.00002]],
+    [[-0.00001, -0.00004], [0.00012, 0.00003]],
+    [[0.00004, -0.00001], [0.00019, 0.00004]]
+  ].map((segment, index) => lineFeature(`${incident.id}-fracture-${index}`, [
+    offsetCoordinate(center, segment[0][0], segment[0][1]),
+    offsetCoordinate(center, segment[1][0], segment[1][1])
+  ], {
+    incidentId: incident.id,
+    color: "#3d342b",
+    title: incident.title
+  }));
+  const envelope = polygonOverlay(`${incident.id}-road-envelope`, [[
+    offsetCoordinate(center, -0.00028, -0.00005),
+    offsetCoordinate(center, 0.00028, -0.00005),
+    offsetCoordinate(center, 0.00028, 0.00005),
+    offsetCoordinate(center, -0.00028, 0.00005),
+    offsetCoordinate(center, -0.00028, -0.00005)
+  ]], {
+    incidentId: incident.id,
+    color: "#ffb663",
+    title: incident.title
+  });
+
+  return { fractures, envelope };
 }
 
 async function getAiStatus() {
@@ -439,11 +784,21 @@ function buildMapPayload() {
   const roads = cloneFeatureCollection(districtLayout.roads);
   const pipes = cloneFeatureCollection(districtLayout.pipes);
   const zones = cloneFeatureCollection(districtLayout.zones);
+  const waterBodies = cloneFeatureCollection(districtLayout.waterBodies);
   const depots = cloneFeatureCollection(districtLayout.depots);
+  const landmarks = cloneFeatureCollection(districtLayout.landmarks);
+  const waterBursts = [];
+  const waterSprays = [];
+  const pollutionPlumes = [];
+  const pollutionParticles = [];
+  const floodExtents = [];
+  const floodFronts = [];
+  const roadEnvelopes = [];
+  const roadFractures = [];
 
   for (const feature of buildings.features) {
     feature.properties.status = "nominal";
-    feature.properties.color = "#3b8ea5";
+    feature.properties.color = buildingColorForGroup(feature.properties.group);
   }
   for (const feature of roads.features) {
     feature.properties.status = "nominal";
@@ -456,10 +811,18 @@ function buildMapPayload() {
     feature.properties.width = feature.properties.networkType === "storm" ? 2.8 : 2.2;
   }
   for (const feature of zones.features) {
-    feature.properties.color = "#0e2330";
+    feature.properties.color = zoneColorForType(feature.properties.zoneType);
+  }
+  for (const feature of waterBodies.features) {
+    feature.properties.color = "#9fd2ef";
+  }
+  for (const feature of landmarks.features) {
+    feature.properties.textColor = "#1e1d1a";
   }
 
   for (const incident of state.incidents.filter((item) => item.status !== "resolved")) {
+    normalizeIncident(incident);
+
     if (incident.targetType === "building") {
       const building = buildings.features.find((feature) => feature.properties.id === incident.targetId);
       if (building) {
@@ -487,15 +850,43 @@ function buildMapPayload() {
         zone.properties.color = "#b65e00";
       }
     }
+
+    if (incident.landmarkId) {
+      const building = buildings.features.find((feature) => feature.properties.id === incident.landmarkId);
+      if (building) {
+        building.properties.status = "alert";
+        building.properties.color = colorForSeverity(incident.severity);
+      }
+    }
+
+    if (incident.visualType === "water_burst") {
+      const { burst, sprays } = scenarioWaterFeatures(incident);
+      waterBursts.push(burst);
+      waterSprays.push(...sprays);
+    } else if (incident.visualType === "pollution_plume") {
+      const { plume, particles } = scenarioPollutionFeatures(incident);
+      pollutionPlumes.push(plume);
+      pollutionParticles.push(...particles);
+    } else if (incident.visualType === "flood_surge") {
+      const { extent, front } = scenarioFloodFeatures(incident);
+      floodExtents.push(extent);
+      floodFronts.push(front);
+    } else if (incident.visualType === "road_fracture") {
+      const { envelope, fractures } = scenarioRoadFeatures(incident);
+      roadEnvelopes.push(envelope);
+      roadFractures.push(...fractures);
+    }
   }
 
   return {
     view: districtLayout.meta,
+    waterBodies,
     buildings,
     roads,
     pipes,
     zones,
     depots,
+    landmarks,
     sensors: featureCollection(state.sensors.map((sensor) => pointFeature(sensor.id, sensor.position, {
       category: sensor.category,
       name: sensor.name,
@@ -540,6 +931,14 @@ function buildMapPayload() {
           }
         };
       })),
+    waterBursts: featureCollection(waterBursts),
+    waterSprays: featureCollection(waterSprays),
+    pollutionPlumes: featureCollection(pollutionPlumes),
+    pollutionParticles: featureCollection(pollutionParticles),
+    floodExtents: featureCollection(floodExtents),
+    floodFronts: featureCollection(floodFronts),
+    roadEnvelopes: featureCollection(roadEnvelopes),
+    roadFractures: featureCollection(roadFractures),
     routes: featureCollection(state.missions.map((mission) => lineFeature(mission.id, mission.route, {
       incidentId: mission.incidentId,
       assetId: mission.assetId,
@@ -566,6 +965,9 @@ function deriveOverview() {
       provider: "ollama",
       model: OLLAMA_MODEL,
       baseUrl: OLLAMA_BASE_URL
+    },
+    scenarios: {
+      presets: scenarioPresetList()
     },
     metrics: {
       openIncidents,
@@ -663,7 +1065,9 @@ function stepMissions() {
 }
 
 function createIncident(template) {
-  const sensor = resolveSensorForCategory(template.category);
+  const sensor = template.sensorId
+    ? state.sensors.find((item) => item.id === template.sensorId)
+    : resolveSensorForCategory(template.category);
   if (!sensor) {
     return null;
   }
@@ -680,8 +1084,8 @@ function createIncident(template) {
     severity: template.severity,
     status: "open",
     detectedAt: new Date().toISOString(),
-    location: sensor.location,
-    coordinate: sensor.position,
+    location: template.location || sensor.location,
+    coordinate: template.coordinate || sensor.position,
     sensorId: sensor.id,
     targetType: template.targetType || sensor.targetType,
     targetId: template.targetId || sensor.targetId,
@@ -691,6 +1095,13 @@ function createIncident(template) {
       predictedImpact: template.impact,
       recommendation: template.recommendation
     },
+    scenarioKey: template.scenarioKey || template.key || `custom-${template.category}`,
+    visualType: template.visualType || defaultVisualType(template.category),
+    visualLabel: template.visualLabel || defaultVisualLabel(template.category),
+    visualSummary: template.visualSummary || defaultVisualSummary(template.category, template.location || sensor.location),
+    publicNote: template.publicNote || template.impact,
+    landmarkId: template.landmarkId || null,
+    landmarkLabel: template.landmarkLabel || template.location || sensor.location,
     assignedAssetId: null,
     worklog: [
       "Edge anomaly streamed into the digital twin.",
@@ -737,58 +1148,46 @@ function autoDispatch(incident) {
   return true;
 }
 
-function createRandomTemplate() {
-  const templates = [
-    {
-      title: "Water leak prediction triggered",
-      category: "water",
-      severity: "high",
-      summary: "Pipe stress model predicts rapid wall fatigue near the utility grid.",
-      confidence: 0.89,
-      impact: "Water loss could affect two residential blocks within 20 minutes.",
-      recommendation: "Dispatch PipeBot and isolate branch valve.",
-      targetType: "pipe",
-      targetId: "pipe-sector-12"
-    },
-    {
-      title: "Road fracture progression detected",
-      category: "roads",
-      severity: "medium",
-      summary: "Road vision and vibration nodes found active cracking on a transit lane.",
-      confidence: 0.85,
-      impact: "Pothole formation likely during the next peak load cycle.",
-      recommendation: "Send Road Rover for composite fill and lane stabilization.",
-      targetType: "road",
-      targetId: "road-transit-corridor"
-    },
-    {
-      title: "Industrial pollution plume detected",
-      category: "air",
-      severity: "high",
-      summary: "Stack emissions exceeded neighborhood air baseline in the industrial belt.",
-      confidence: 0.82,
-      impact: "AQI may cross 140 within the next 15 minutes.",
-      recommendation: "Send aerial drone for source scan and AirSweep for local neutralization.",
-      targetType: "zone",
-      targetId: "zone-east"
-    },
-    {
-      title: "Storm drain overflow risk rising",
-      category: "flood",
-      severity: "medium",
-      summary: "Drain sonar reports a rapid flow spike near the river edge retention basin.",
-      confidence: 0.8,
-      impact: "Localized curb flooding likely if intervention is delayed.",
-      recommendation: "Inspect drain spine and deploy diversion bot.",
-      targetType: "pipe",
-      targetId: "pipe-river-drain"
-    }
-  ];
+function createPresetIncident(key) {
+  const preset = SCENARIO_PRESETS[key];
+  if (!preset) {
+    return null;
+  }
 
+  return createIncident({
+    ...preset,
+    scenarioKey: preset.key
+  });
+}
+
+function triggerScenarioPreset(key) {
+  const existing = state.incidents.find((incident) => incident.scenarioKey === key && incident.status !== "resolved");
+  if (existing) {
+    return { incident: existing, reused: true };
+  }
+
+  const incident = createPresetIncident(key);
+  if (!incident) {
+    return null;
+  }
+
+  if (state.city.mode === "auto-heal") {
+    autoDispatch(incident);
+  }
+
+  return { incident, reused: false };
+}
+
+function createRandomTemplate() {
+  const templates = Object.values(SCENARIO_PRESETS);
   return templates[Math.floor(Math.random() * templates.length)];
 }
 
 function simulateTick() {
+  if (Date.now() < simulationHoldUntil) {
+    return;
+  }
+
   refreshAssetStatus();
   stepMissions();
 
@@ -800,7 +1199,7 @@ function simulateTick() {
   }
 
   const openIncidents = state.incidents.filter((incident) => incident.status !== "resolved");
-  if (openIncidents.length < 5 && Math.random() < 0.34) {
+  if (openIncidents.length < 2 && Math.random() < 0.34) {
     const incident = createIncident(createRandomTemplate());
     if (state.city.mode === "auto-heal") {
       autoDispatch(incident);
@@ -894,6 +1293,22 @@ async function handleApi(req, res, url) {
     return;
   }
 
+  const scenarioMatch = url.pathname.match(/^\/api\/scenarios\/([^/]+)$/);
+  if (req.method === "POST" && scenarioMatch) {
+    const result = triggerScenarioPreset(scenarioMatch[1]);
+    if (!result) {
+      sendJson(res, 404, { error: "Scenario preset not found" });
+      return;
+    }
+
+    if (!result.reused) {
+      commitAndBroadcast();
+    }
+
+    sendJson(res, 200, { ok: true, ...result });
+    return;
+  }
+
   if (req.method === "POST" && url.pathname === "/api/simulate") {
     simulateTick();
     sendJson(res, 200, { ok: true });
@@ -903,6 +1318,10 @@ async function handleApi(req, res, url) {
   if (req.method === "POST" && url.pathname === "/api/reset") {
     fs.copyFileSync(seedFile, dataFile);
     state = readState();
+    eventCounter = nextCounter(state.timeline, "EVT", (state.timeline || []).length + 1);
+    incidentCounter = nextCounter(state.incidents, "INC", 4001);
+    missionCounter = nextCounter(state.missions, "MIS", 9101);
+    simulationHoldUntil = Date.now() + 20000;
     reconcileState();
     commitAndBroadcast();
     sendJson(res, 200, { ok: true });

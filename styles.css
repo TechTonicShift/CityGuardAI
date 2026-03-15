@@ -248,6 +248,22 @@ label,
   padding: 20px;
 }
 
+.scenario-toolbar {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.78);
+  display: grid;
+  gap: 14px;
+}
+
+.scenario-toolbar__copy strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
 .map-panel__head,
 .card-head {
   display: flex;
@@ -340,6 +356,25 @@ button:hover {
   color: var(--ink-soft);
 }
 
+.scenario-overlay {
+  left: 16px;
+  bottom: 16px;
+  width: min(390px, calc(100% - 32px));
+  padding: 16px;
+}
+
+.scenario-overlay strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.scenario-meta {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .legend-list {
   margin-top: 10px;
   display: grid;
@@ -365,6 +400,14 @@ button:hover {
   background: var(--warn);
 }
 
+.dot.water {
+  background: #35a6ff;
+}
+
+.dot.air {
+  background: #6fa85f;
+}
+
 .dot.route {
   background: var(--accent);
 }
@@ -383,9 +426,43 @@ button:hover {
 .queue-grid,
 .asset-grid,
 .stack-list,
-.timeline-list {
+.timeline-list,
+.preset-grid {
   display: grid;
   gap: 14px;
+}
+
+.preset-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.preset-card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 14px;
+  text-align: left;
+  display: grid;
+  gap: 8px;
+}
+
+.preset-card strong {
+  font-size: 1rem;
+}
+
+.preset-card p,
+.preset-card small {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.preset-card small {
+  font-size: 0.78rem;
+}
+
+.preset-card.is-live {
+  border-color: rgba(255, 109, 45, 0.36);
+  box-shadow: 0 12px 28px rgba(255, 109, 45, 0.12);
 }
 
 .proof-grid {
@@ -608,6 +685,10 @@ body[data-view-mode="operations"] .citizen-card {
   display: none;
 }
 
+body[data-view-mode="citizen"] .scenario-toolbar {
+  display: none;
+}
+
 body[data-view-mode="citizen"] .context-card:not(.citizen-card) {
   display: none;
 }
@@ -628,6 +709,10 @@ body[data-view-mode="citizen"] .citizen-card {
     grid-template-columns: 1fr;
   }
 
+  .preset-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .detail-shell {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -642,7 +727,8 @@ body[data-view-mode="citizen"] .citizen-card {
   .proof-grid,
   .asset-grid,
   .incident-form,
-  .detail-shell {
+  .detail-shell,
+  .preset-grid {
     grid-template-columns: 1fr;
   }
 
